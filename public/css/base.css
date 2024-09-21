@@ -1,7 +1,7 @@
 :root{
     /* Site Colors */
-    --primary-color: grey;
-    --secondary-color: gold;
+    --primary-color: ;
+    --secondary-color: #1E6DE3;
     --ham-color: var(--secondary-color);
 }
 
