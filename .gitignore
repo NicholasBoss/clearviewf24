@@ -13,6 +13,11 @@ node_modules
 # created on the hosting server
 .env
 
+# Jetbrains IDE settings
+.idea
+# Jetbrains temporary files
+~*
+
 # debugging config file
 .vscode
 .vscode/*
