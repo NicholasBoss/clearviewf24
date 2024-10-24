@@ -71,8 +71,8 @@ app.get("/", generalRoute)
 // // Account Route
 // app.use("/account", accountRoute)
 
-// // About Route
-// app.get("/about", generalRoute)
+// About Route
+app.get("/about", generalRoute)
 
 // // Menu Route
 // app.use("/menu", menuRoute)
