@@ -15,7 +15,7 @@ const session = require("express-session")
 const pool = require("./database/")
 const generalRoute = require("./routes/generalRoute")
 // const contactRoute = require("./routes/messageRoute")
-// const accountRoute = require("./routes/accountRoute")
+const accountRoute = require("./routes/accountRoute")
 // const menuRoute = require("./routes/menuRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
@@ -69,7 +69,7 @@ app.get("/", generalRoute)
 // app.use("/contact", contactRoute)
 
 // // Account Route
-// app.use("/account", accountRoute)
+app.use("/account", accountRoute)
 
 // About Route
 app.get("/about", generalRoute)
