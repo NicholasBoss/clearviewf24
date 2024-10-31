@@ -44,9 +44,9 @@ INSERT INTO mirage ( mirage_build_out )
 VALUES ( "None")
         , ("Bug Flap Black")
         , ("Bug Flap Grey")
-        , ("1\" X 2\" L Flap")
+        , ("1\'' X 2\'' L Flap")
         , ("1' Sq")
-        , ("1/2\" Sq")
+        , ("1/2\' Sq")
         , ("Custom");
 
 INSERT INTO mirage_3500 (mirage_3500_handle)
