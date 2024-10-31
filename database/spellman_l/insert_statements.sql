@@ -1,18 +1,28 @@
 -- My ClearView INSERT statements
 
--- address - mirage_3500
--- address, customer, cust_order, customer_address, door, account, general_retract_control, hale_door, hale_screen_model, mirage, mirage_3500;
+-- customer_address, door, account, general_retract_control, hale_door, hale_screen_model, mirage, mirage_3500;
 
--- data not available right now
-INSERT INTO address ( address_id, address_line1, address_line2 ) 
-VALUES ( 1,  );
-
--- data not available right now
-INSERT INTO customer ( customer_id, c_fname, c_lname )
+INSERT INTO window ( tab_spring, color_id, frame_size_id, fastener_id, mesh_id ) -- color_id, frame_size_id, faster_id, mesh_id are foreign keys from color table, frame_size table, fastener table, and mesh table
 VALUES ( );
 
--- data not available right now
-INSERT INTO cust_order ( cust_order_id, customer_id, order_id )
+INSERT INTO new_window_screen ( width_inch, height_inch, window_id) -- window_id is foreign key from window table.
+VALUES ( "1/16''", "1/16''", SELECT window_id FROM window WHERE )
+        , ("1/8''", "1/8''", SELECT ...)
+        , ("3/16''", "3/16''", SELECT ...)
+        , ("1/4''", "1/4;;", SELECT ...)
+        , ("5/16''", "5/16''", SELECT ...)
+        , ("3/8''", "3/8''", SELECT ...)
+        , ("7/16''", "7/16''", SELECT ...)
+        , ("1/2''", "1/2''", SELECT ...)
+        , ("9/16''", "9/16''", SELECT ...)
+        , ("5/8''", "5/8''", SELECT ...)
+        , ("11/16''", "11/16''", SELECT ...)
+        , ("3/4''", "3/4''", SELECT ...)
+        , ("13/16''", "13/16''", SELECT ...)
+        , ("7/8''", "7/8''", SELECT ...)
+        , ("15/16''", "15/16''", SELECT ...);
+
+INSERT INTO order_log ( order_id, employee_id, customer_id, actual_data)
 VALUES ( );
 
 -- data not available right now
