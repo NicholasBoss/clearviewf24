@@ -9,7 +9,5 @@ const util = require("../utilities")
 // Default Home Route
 router.get("/", util.handleErrors(accountController.buildAccount))
 
-
-
 // Export
 module.exports = router
