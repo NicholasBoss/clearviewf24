@@ -21,3 +21,6 @@ launch.json
 # .DS_Store is only for Mac users
 **/.DS_Store
 README.md
+
+# Jetbrains settings
+.idea
