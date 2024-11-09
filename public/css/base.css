@@ -89,3 +89,7 @@ input[type=email], input[type=password], input[type=text], input[type=tel], inpu
     cursor: pointer;
     text-align: center;
 }
+
+#workOrders {
+	text-align: center;
+}
