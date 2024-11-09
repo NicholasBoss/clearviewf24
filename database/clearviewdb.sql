@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS color;
 DROP TABLE IF EXISTS frame_size;
 DROP TABLE IF EXISTS fastener;
 DROP TABLE IF EXISTS mesh;
-DROP TABLE IF EXISTS window;
+DROP TABLE IF EXISTS public.window;
 DROP TABLE IF EXISTS new_window_screen;
 DROP TABLE IF EXISTS order_log;
 DROP TABLE IF EXISTS phantom;
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS customer
 -- Table order
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS order 
+CREATE TABLE IF NOT EXISTS public.order 
 (
   order_id SERIAL,
   order_date DATE NOT NULL,
@@ -89,8 +89,8 @@ CREATE TABLE IF NOT EXISTS cust_order
   customer_id INTEGER NOT NULL,
   order_id INTEGER NOT NULL,
   CONSTRAINT cust_order_pk PRIMARY KEY (cust_order_id),
-  INDEX fk_cust_order_customer_idx (customer_id ASC) VISIBLE,
-  INDEX fk_cust_order_order1_idx (order_id ASC) VISIBLE,
+  INDEX fk_cust_order_customer_idx (customer_id),
+  INDEX fk_cust_order_order1_idx (order_id ),
   CONSTRAINT cust_order_fk1
     FOREIGN KEY (customer_id)
     REFERENCES customer (customer_id)
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS cust_order
     ON UPDATE CASCADE,
   CONSTRAINT cust_order_fk2
     FOREIGN KEY (order_id)
-    REFERENCES order (order_id)
+    REFERENCES public.order (order_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
@@ -114,8 +114,8 @@ CREATE TABLE IF NOT EXISTS customer_address
   customer_id INTEGER NOT NULL,
   address_id INTEGER NOT NULL,
   CONSTRAINT cust_address_pk PRIMARY KEY (customer_address_id),
-  INDEX fk_customer_address_customer1_idx (customer_id ASC) VISIBLE,
-  INDEX fk_customer_address_address1_idx (address_id ASC) VISIBLE,
+  INDEX fk_customer_address_customer1_idx (customer_id),
+  INDEX fk_customer_address_address1_idx (address_id),
   CONSTRAINT fk_customer_address_address1
     FOREIGN KEY (address_id)
     REFERENCES address (address_id)
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS general_retract_control
 (
   general_retract_control_id SERIAL,
   door_type CHARACTER VARYING NOT NULL,
-  door_mount CHARACTER VARYING NOT NULL COMMENT 'In VS Surface\\n',
+  door_mount CHARACTER VARYING NOT NULL,
   opening_side CHARACTER VARYING NOT NULL,
   fraction CHARACTER VARYING NOT NULL,
   mesh CHARACTER VARYING NOT NULL,
@@ -300,7 +300,7 @@ CREATE TABLE IF NOT EXISTS mesh
 -- Table window
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS window 
+CREATE TABLE IF NOT EXISTS public.window 
 (
   window_id SERIAL,
   tab_spring CHARACTER VARYING NOT NULL,
@@ -309,10 +309,10 @@ CREATE TABLE IF NOT EXISTS window
   fastener_id INTEGER NOT NULL,
   mesh_id INTEGER NOT NULL,
   CONSTRAINT window_pk PRIMARY KEY (window_id),
-  INDEX window_fk1_idx (color_id ASC) VISIBLE,
-  INDEX window_fk2_idx (frame_size_id ASC) VISIBLE,
-  INDEX window_fk3_idx (fastener_id ASC) VISIBLE,
-  INDEX window_fk4_idx (mesh_id ASC) VISIBLE,
+  INDEX window_fk1_idx (color_id),
+  INDEX window_fk2_idx (frame_size_id),
+  INDEX window_fk3_idx (fastener_id),
+  INDEX window_fk4_idx (mesh_id),
   CONSTRAINT window_fk1
     FOREIGN KEY (color_id)
     REFERENCES color (color_id)
@@ -326,8 +326,8 @@ CREATE TABLE IF NOT EXISTS window
   CONSTRAINT window_fk3
     FOREIGN KEY (fastener_id)
     REFERENCES fastener (fastener_id)
-    ON UPDATE CASCADE,
     ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT window_fk4
     FOREIGN KEY (mesh_id)
     REFERENCES mesh (mesh_id)
@@ -343,14 +343,14 @@ CREATE TABLE IF NOT EXISTS window
 CREATE TABLE IF NOT EXISTS new_window_screen 
 (
   nws_id SERIAL,
-  width_inch CHARACTER VARYING NOT NULL COMMENT 'in inches',
-  height_inch CHARACTER VARYING NOT NULL COMMENT 'in inches',
+  width_inch CHARACTER VARYING NOT NULL,
+  height_inch CHARACTER VARYING NOT NULL,
   window_id INTEGER NOT NULL,
   CONSTRAINT nws_pk PRIMARY KEY (nws_id),
-  INDEX nws_fk1_idx (window_id ASC) VISIBLE,
+  INDEX nws_fk1_idx (window_id),
   CONSTRAINT nws_fk1
     FOREIGN KEY (window_id)
-    REFERENCES window (window_id)
+    REFERENCES public.window (window_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
@@ -368,9 +368,9 @@ CREATE TABLE IF NOT EXISTS order_log
   customer_id INTEGER NOT NULL,
   actual_date DATE NULL DEFAULT NULL,
   CONSTRAINT order_log_pk PRIMARY KEY (order_log_id),
-  INDEX fk_order_log_order1_idx (order_id ASC) VISIBLE,
-  INDEX fk_order_log_account1_idx (account_id ASC) VISIBLE,
-  INDEX fk_order_log_customer1_idx (customer_id ASC) VISIBLE,
+  INDEX fk_order_log_order1_idx (order_id),
+  INDEX fk_order_log_account1_idx (account_id),
+  INDEX fk_order_log_customer1_idx (customer_id),
   CONSTRAINT order_log_fk1
     FOREIGN KEY (customer_id)
     REFERENCES customer (customer_id)
@@ -383,7 +383,7 @@ CREATE TABLE IF NOT EXISTS order_log
     ON UPDATE CASCADE,
   CONSTRAINT order_log_fk3
     FOREIGN KEY (order_id)
-    REFERENCES order (order_id)
+    REFERENCES public.order (order_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
@@ -549,8 +549,8 @@ CREATE TABLE IF NOT EXISTS nws_measurement
   height_fraction CHARACTER(1) NULL,
   height_plus_minus CHARACTER(1) NULL,
   CONSTRAINT nws_measurement_pk PRIMARY KEY (nws_measurement_id),
-  INDEX nws_measurement_fk1_idx (measurement_id ASC) VISIBLE,
-  INDEX nws_measurement_fk2_idx (nws_id ASC) VISIBLE,
+  INDEX nws_measurement_fk1_idx (measurement_id),
+  INDEX nws_measurement_fk2_idx (nws_id),
   CONSTRAINT nws_measurement_fk1
     FOREIGN KEY (measurement_id)
     REFERENCES measurement (measurement_id)
@@ -580,8 +580,8 @@ CREATE TABLE IF NOT EXISTS rainier_color
   est_zipper_color CHARACTER(1) NULL DEFAULT NULL,
   act_zipper_color CHARACTER(1) NULL DEFAULT NULL,
   CONSTRAINT ranier_color_pk PRIMARY KEY (rainier_color_id),
-  INDEX rainier_color_fk1_idx (rainier_id ASC) VISIBLE,
-  INDEX rainier_color_fk2_idx (color_id ASC) VISIBLE,
+  INDEX rainier_color_fk1_idx (rainier_id),
+  INDEX rainier_color_fk2_idx (color_id),
   CONSTRAINT rainier_color_fk1
     FOREIGN KEY (rainier_id)
     REFERENCES rainier (rainier_id)
@@ -605,8 +605,8 @@ CREATE TABLE IF NOT EXISTS mirage_3500_mesh
   mirage_3500_id INTEGER NOT NULL,
   mesh_id INTEGER NOT NULL,
   CONSTRAINT mirage_3500_mesh_pk PRIMARY KEY (mirage_3500_mesh_id),
-  INDEX mirage_3500_mesh_fk1_idx (mirage_3500_id ASC) VISIBLE,
-  INDEX mirage_3500_mesh_fk2_idx (mesh_id ASC) VISIBLE,
+  INDEX mirage_3500_mesh_fk1_idx (mirage_3500_id),
+  INDEX mirage_3500_mesh_fk2_idx (mesh_id),
   CONSTRAINT mirage_3500_mesh_fk1
     FOREIGN KEY (mirage_3500_id)
     REFERENCES mirage_3500 (mirage_3500_id)
@@ -630,8 +630,8 @@ CREATE TABLE IF NOT EXISTS mirage_mesh
   mirage_id INTEGER NOT NULL,
   mesh_id INTEGER NOT NULL,
   CONSTRAINT mirage_mesh_pk PRIMARY KEY (mirage_mesh_id),
-  INDEX mirage_mesh_fk1_idx (mirage_id ASC) VISIBLE,
-  INDEX mirage_mesh_fk2_idx (mesh_id ASC) VISIBLE,
+  INDEX mirage_mesh_fk1_idx (mirage_id),
+  INDEX mirage_mesh_fk2_idx (mesh_id),
   CONSTRAINT mirage_mesh_fk1
     FOREIGN KEY (mirage_id)
     REFERENCES mirage (mirage_id)
@@ -655,8 +655,8 @@ CREATE TABLE IF NOT EXISTS mirage_3500_color
   mirage_3500_id INTEGER NOT NULL,
   color_id INTEGER NOT NULL,
   CONSTRAINT mirage_3500_color_pk PRIMARY KEY (mirage_3500_color_id),
-  INDEX mirage_3500_color_fk1_idx (mirage_3500_id ASC) VISIBLE,
-  INDEX mirage_3500_color_fk2_idx (color_id ASC) VISIBLE,
+  INDEX mirage_3500_color_fk1_idx (mirage_3500_id),
+  INDEX mirage_3500_color_fk2_idx (color_id),
   CONSTRAINT mirage_3500_color_fk1
     FOREIGN KEY (mirage_3500_id)
     REFERENCES mirage_3500 (mirage_3500_id)
@@ -682,8 +682,8 @@ CREATE TABLE IF NOT EXISTS mirage_color
   mirage_color CHARACTER(1) NULL,
   pivot_pro_color CHARACTER(1) NULL,
   CONSTRAINT mirage_color_pk PRIMARY KEY (mirage_color_id),
-  INDEX mirage_color_fk1_idx (mirage_id ASC) VISIBLE,
-  INDEX mirage_color_fk2_idx (color_id ASC) VISIBLE,
+  INDEX mirage_color_fk1_idx (mirage_id),
+  INDEX mirage_color_fk2_idx (color_id),
   CONSTRAINT mirage_color_fk1
     FOREIGN KEY (mirage_id)
     REFERENCES mirage (mirage_id)
@@ -707,8 +707,8 @@ CREATE TABLE IF NOT EXISTS rainier_order
   rainier_id INTEGER NOT NULL,
   order_id INTEGER NOT NULL,
   CONSTRAINT rainier_order_pk PRIMARY KEY (rainier_order_id),
-  INDEX fk_rainier_order_rainier1_idx (rainier_id ASC) VISIBLE,
-  INDEX fk_rainier_order_order1_idx (order_id ASC) VISIBLE,
+  INDEX fk_rainier_order_rainier1_idx (rainier_id),
+  INDEX fk_rainier_order_order1_idx (order_id),
   CONSTRAINT rainier_order_fk1
     FOREIGN KEY (rainier_id)
     REFERENCES rainier (rainier_id)
@@ -716,7 +716,7 @@ CREATE TABLE IF NOT EXISTS rainier_order
     ON UPDATE CASCADE,
   CONSTRAINT rainier_order_fk2
     FOREIGN KEY (order_id)
-    REFERENCES order (order_id)
+    REFERENCES public.order (order_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
@@ -731,8 +731,8 @@ CREATE TABLE IF NOT EXISTS mirage_order
   mirage_id INTEGER NOT NULL,
   order_id INTEGER NOT NULL,
   CONSTRAINT mirage_order_pk PRIMARY KEY (mirage_order_id),
-  INDEX fk_mirage_order_mirage1_idx (mirage_id ASC) VISIBLE,
-  INDEX fk_mirage_order_order1_idx (order_id ASC) VISIBLE,
+  INDEX fk_mirage_order_mirage1_idx (mirage_id),
+  INDEX fk_mirage_order_order1_idx (order_id),
   CONSTRAINT mirage_order_fk1
     FOREIGN KEY (mirage_id)
     REFERENCES mirage (mirage_id)
@@ -740,7 +740,7 @@ CREATE TABLE IF NOT EXISTS mirage_order
     ON UPDATE CASCADE,
   CONSTRAINT mirage_order_fk2
     FOREIGN KEY (order_id)
-    REFERENCES order (order_id)
+    REFERENCES public.order (order_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
@@ -755,8 +755,8 @@ CREATE TABLE IF NOT EXISTS mirage_3500_order
   mirage_3500_id INTEGER NOT NULL,
   order_id INTEGER NOT NULL,
   CONSTRAINT mirage_3500_order_pk PRIMARY KEY (mirage_3500_order_id),
-  INDEX fk_mirage_3500_order_mirage_35001_idx (mirage_3500_id ASC) VISIBLE,
-  INDEX fk_mirage_3500_order_order1_idx (order_id ASC) VISIBLE,
+  INDEX fk_mirage_3500_order_mirage_35001_idx (mirage_3500_id),
+  INDEX fk_mirage_3500_order_order1_idx (order_id),
   CONSTRAINT mirage_3500_order_fk1
     FOREIGN KEY (mirage_3500_id)
     REFERENCES mirage_3500 (mirage_3500_id)
@@ -764,7 +764,7 @@ CREATE TABLE IF NOT EXISTS mirage_3500_order
     ON UPDATE CASCADE,
   CONSTRAINT mirage_3500_order_fk2
     FOREIGN KEY (order_id)
-    REFERENCES order (order_id)
+    REFERENCES public.order (order_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
@@ -779,8 +779,8 @@ CREATE TABLE IF NOT EXISTS nws_order
   nws_id INTEGER NOT NULL,
   order_id INTEGER NOT NULL,
   CONSTRAINT nws_order_pk PRIMARY KEY (nws_order_id),
-  INDEX fk_nws_order_nws1_idx (nws_id ASC) VISIBLE,
-  INDEX fk_nws_order_order1_idx (order_id ASC) VISIBLE,
+  INDEX fk_nws_order_nws1_idx (nws_id),
+  INDEX fk_nws_order_order1_idx (order_id),
   CONSTRAINT nws_order_fk1
     FOREIGN KEY (nws_id)
     REFERENCES new_window_screen (nws_id)
@@ -788,7 +788,7 @@ CREATE TABLE IF NOT EXISTS nws_order
     ON UPDATE CASCADE,
   CONSTRAINT nws_order_fk2
     FOREIGN KEY (order_id)
-    REFERENCES order (order_id)
+    REFERENCES public.order (order_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
