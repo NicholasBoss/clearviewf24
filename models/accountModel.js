@@ -3,10 +3,10 @@ const pool = require('../database/')
 /* ***********************
     * Create Account
     *************************/
-async function createAccount(account_firstname, account_lastname, account_email, account_phone, account_password) {
+async function createAccount(account_firstname, account_lastname, account_email, account_password) {
     try {
-        const sql = 'INSERT INTO account (account_firstname, account_lastname, account_email, account_phone, account_password) VALUES ($1, $2, $3, $4, $5) RETURNING *'
-        return await pool.query(sql, [account_firstname, account_lastname, account_email, account_phone, account_password])
+        const sql = 'INSERT INTO account (account_firstname, account_lastname, account_email, account_password) VALUES ($1, $2, $3, $4) RETURNING *'
+        return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password])
     } catch (error) {
         return error.message
     }
