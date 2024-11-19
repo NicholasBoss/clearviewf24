@@ -46,6 +46,8 @@ ordersController.createOrder = async function(req, res){
             mirage_build_out,
             mirage_3500_handle
         )
+    } catch (error) {
+        console.log('Error creating order:', error);
     }
 }
 
