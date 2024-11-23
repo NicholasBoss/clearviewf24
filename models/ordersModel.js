@@ -119,3 +119,19 @@ async function createHaleDoorOrder (product_name, measurement_name, size_type, f
         return error.message
     }
 }
+
+async function updateOrder(product_name, measurement_name, size_type, fastener_type, color_name, mesh_type, mirage_build_out, mirage_3500_handle){
+    try {
+
+    } catch (error) {
+        return error.message
+    }
+}
+
+async function deleteOrder(product_name, measurement_name, size_type, fastener_type, color_name, mesh_type, mirage_build_out, mirage_3500_handle){
+    try {
+
+    } catch (error) {
+        return error.message
+    }
+}
