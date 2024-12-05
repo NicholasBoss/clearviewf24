@@ -72,7 +72,7 @@ ordersController.updateOrder = async function(req, res){
 
 ordersController.deleteOrder = async function(req, res){
     const { product_name, measurement_name, size_type, fastener_type, color_name, mesh_type, mirage_build_out, mirage_3500_handle } = req.body
-     = req.body
+    = req.body
     console.log('Deleting order')
     try {
         const order = await ordersModel.deleteOrder(
@@ -94,59 +94,69 @@ ordersController.deleteOrder = async function(req, res){
 
 // individual order creation functions
 ordersController.buildCreateMirage3500 = async function(req, res){
-    res.render('orders/create', {
+    res.render('orders/createMirage3500', {
         title: 'Create Mirage 3500 order',
-        link: 'orders/create',
+        link: 'orders/createMirage3500',
         errors: null
     })
 }
 ordersController.buildCreateMirage = async function(req, res){
-    res.render('orders/create', {
+    res.render('orders/createMirage', {
         title: 'Create Mirage order',
-        link: 'orders/create',
+        link: 'orders/createMirage',
+        errors: null
+    })
+}
+
+
+
+ordersController.buildCreateRainier = async function(req, res){
+    res.render('orders/createRainier', {
+        title: 'Create order',
+        link: 'orders/createRainier',
         errors: null
     })
 }
 
 ordersController.buildCreateDoor = async function(req, res){
-    res.render('orders/create', {
+    res.render('orders/createDoor', {
         title: 'Create door order',
-        link: 'orders/create',
+        link: 'orders/createDoor',
         errors: null
     })
 }
 
-
-ordersController.buildCreate = async function(req, res){
-    res.render('orders/create', {
+ordersController.buildCreateHaleScreenModel = async function(req, res){
+    res.render('orders/createHaleScreenModel', {
         title: 'Create order',
-        link: 'orders/create',
+        link: 'orders/createHaleScreenModel',
         errors: null
     })
 }
 
-ordersController.buildCreate = async function(req, res){
-    res.render('orders/create', {
+ordersController.buildCreatePhantom = async function(req, res){
+    res.render('orders/createPhantom', {
         title: 'Create order',
-        link: 'orders/create',
+        link: 'orders/createPhantom',
         errors: null
     })
 }
 
-ordersController.buildCreate = async function(req, res){
-    res.render('orders/create', {
+ordersController.buildCreateWizardSmartScreen = async function(req, res){
+    res.render('orders/createWizardSmartScreen', {
         title: 'Create order',
-        link: 'orders/create',
+        link: 'orders/createWizardSmartScreen',
         errors: null
     })
 }
 
-
-
-
-
-
-
+ordersController.buildCreateViewguard = async function(req, res){
+    res.render('orders/createViewguard', {
+        title: 'Create order',
+        link: 'orders/createViewguard',
+        errors: null
+    })
+}
 
 
 module.exports = ordersController
