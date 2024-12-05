@@ -111,9 +111,9 @@ async function accountLogin(req, res){
     // console.log(accountData)
     if (!accountData) {
         req.flash('notice', 'Please check your credentials and try again.')
-        res.status(400).render('account/login', {
-            title: 'Login',
-            link: 'account/login',
+        res.status(400).render('index', {
+            title: 'Home',
+            link: '',
             section: 'account',
             errors: null,
             account_email,
@@ -140,9 +140,9 @@ async function accountLogin(req, res){
         }
     } else {
         req.flash('notice', 'Please check your credentials and try again.')
-        res.status(400).render('account/login', {
+        res.status(400).render('index', {
             title: 'Login',
-            link: 'account/login',
+            link: '',
             section: 'account',
             errors: null,
             account_email,
