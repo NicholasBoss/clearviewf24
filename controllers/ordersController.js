@@ -51,4 +51,102 @@ ordersController.createOrder = async function(req, res){
     }
 }
 
+ordersController.updateOrder = async function(req, res){
+    const { product_name, measurement_name, size_type, fastener_type, color_name, mesh_type, mirage_build_out, mirage_3500_handle } = req.body
+    console.log('Updating order')
+    try {
+        const order = await ordersModel.updateOrder(
+            product_name,
+            measurement_name,
+            size_type,
+            fastener_type,
+            color_name,
+            mesh_type,
+            mirage_build_out,
+            mirage_3500_handle
+        )
+    } catch (error) {
+        console.log('Error updating order:', error);
+    }
+}
+
+ordersController.deleteOrder = async function(req, res){
+    const { product_name, measurement_name, size_type, fastener_type, color_name, mesh_type, mirage_build_out, mirage_3500_handle } = req.body
+     = req.body
+    console.log('Deleting order')
+    try {
+        const order = await ordersModel.deleteOrder(
+            product_name,
+            measurement_name,
+            size_type,
+            fastener_type,
+            color_name,
+            mesh_type,
+            mirage_build_out,
+            mirage_3500_handle
+        )
+    } catch (error) {
+        console.log('Error deleting order:', error);
+    }
+}
+
+
+
+// individual order creation functions
+ordersController.buildCreateMirage3500 = async function(req, res){
+    res.render('orders/create', {
+        title: 'Create Mirage 3500 order',
+        link: 'orders/create',
+        errors: null
+    })
+}
+ordersController.buildCreateMirage = async function(req, res){
+    res.render('orders/create', {
+        title: 'Create Mirage order',
+        link: 'orders/create',
+        errors: null
+    })
+}
+
+ordersController.buildCreateDoor = async function(req, res){
+    res.render('orders/create', {
+        title: 'Create door order',
+        link: 'orders/create',
+        errors: null
+    })
+}
+
+
+ordersController.buildCreate = async function(req, res){
+    res.render('orders/create', {
+        title: 'Create order',
+        link: 'orders/create',
+        errors: null
+    })
+}
+
+ordersController.buildCreate = async function(req, res){
+    res.render('orders/create', {
+        title: 'Create order',
+        link: 'orders/create',
+        errors: null
+    })
+}
+
+ordersController.buildCreate = async function(req, res){
+    res.render('orders/create', {
+        title: 'Create order',
+        link: 'orders/create',
+        errors: null
+    })
+}
+
+
+
+
+
+
+
+
+
 module.exports = ordersController
