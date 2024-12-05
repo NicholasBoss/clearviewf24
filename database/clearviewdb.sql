@@ -6,18 +6,18 @@ DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS cust_order;
 DROP TABLE IF EXISTS customer_address;
 DROP TABLE IF EXISTS door;
-DROP TABLE IF EXISTS account;
-DROP TABLE IF EXISTS general_retract_control;
-DROP TABLE IF EXISTS hale_door;
-DROP TABLE IF EXISTS hale_screen_model;
+DROP TABLE IF EXISTS account; 
+DROP TABLE IF EXISTS general_retract_control; -- ADD
+DROP TABLE IF EXISTS hale_door; -- ADD
+DROP TABLE IF EXISTS hale_screen_model; -- ADD
 DROP TABLE IF EXISTS mirage;
 DROP TABLE IF EXISTS mirage_3500;
 DROP TABLE IF EXISTS color;
 DROP TABLE IF EXISTS frame_size;
 DROP TABLE IF EXISTS fastener;
-DROP TABLE IF EXISTS mesh;
-DROP TABLE IF EXISTS public.window;
-DROP TABLE IF EXISTS new_window_screen;
+DROP TABLE IF EXISTS mesh; 
+DROP TABLE IF EXISTS public.window; -- REMOVE
+DROP TABLE IF EXISTS new_window_screen; -- ADD
 DROP TABLE IF EXISTS order_log;
 DROP TABLE IF EXISTS phantom;
 DROP TABLE IF EXISTS rainier;
@@ -25,15 +25,16 @@ DROP TABLE IF EXISTS sunscreen;
 DROP TABLE IF EXISTS view_guard;
 DROP TABLE IF EXISTS wizard_smart_screen;
 DROP TABLE IF EXISTS measurement;
-DROP TABLE IF EXISTS nws_measurement;
-DROP TABLE IF EXISTS rainier_color;
-DROP TABLE IF EXISTS mirage_3500_mesh;
-DROP TABLE IF EXISTS mirage_mesh;
-DROP TABLE IF EXISTS mirage_3500_color;
-DROP TABLE IF EXISTS mirage_color;
-DROP TABLE IF EXISTS rainier_order;
-DROP TABLE IF EXISTS mirage_order;
-DROP TABLE IF EXISTS mirage_3500_order;
+DROP TABLE IF EXISTS customization;
+DROP TABLE IF EXISTS nws_measurement; -- REMOVE
+DROP TABLE IF EXISTS rainier_color; -- REMOVE
+DROP TABLE IF EXISTS mirage_3500_mesh; -- REMOVE
+DROP TABLE IF EXISTS mirage_mesh; -- REMOVE
+DROP TABLE IF EXISTS mirage_3500_color; -- REMOVE
+DROP TABLE IF EXISTS mirage_color; -- REMOVE
+DROP TABLE IF EXISTS rainier_order; -- REMOVE
+DROP TABLE IF EXISTS mirage_order; -- REMOVE
+DROP TABLE IF EXISTS mirage_3500_order; -- REMOVE
 DROP TABLE IF EXISTS nws_order;
 
 -- -----------------------------------------------------
@@ -419,46 +420,72 @@ CREATE TABLE IF NOT EXISTS phantom
 CREATE TABLE IF NOT EXISTS rainier 
 (
   rainier_id SERIAL,
-  est_placement CHARACTER VARYING NULL,
-  act_placement CHARACTER VARYING NULL,
-  est_housing_series CHARACTER VARYING NULL DEFAULT NULL,
-  act_housing_series CHARACTER VARYING NULL DEFAULT NULL,
-  est_drive_side CHARACTER VARYING NULL DEFAULT NULL,
-  act_drive_side CHARACTER VARYING NULL DEFAULT NULL,
-  est_hembar CHARACTER VARYING NULL DEFAULT NULL,
-  act_hembar CHARACTER VARYING NULL DEFAULT NULL,
-  est_pilebrush CHARACTER VARYING NULL DEFAULT NULL,
-  act_pilebrush CHARACTER VARYING NULL DEFAULT NULL,
-  est_brush_location CHARACTER VARYING NULL DEFAULT NULL,
-  act_brush_location CHARACTER VARYING NULL DEFAULT NULL,
-  est_cord_length CHARACTER VARYING NULL DEFAULT NULL,
-  act_cord_length CHARACTER VARYING NULL DEFAULT NULL,
-  est_mount_type CHARACTER VARYING NULL DEFAULT NULL,
-  act_mount_type CHARACTER VARYING NULL DEFAULT NULL,
-  est_top_opening_width CHARACTER VARYING NULL DEFAULT NULL,
-  act_top_opening_width CHARACTER VARYING NULL DEFAULT NULL,
-  act_top_level CHARACTER VARYING NULL DEFAULT NULL,
+  
+  -- break out in a table
+  -- est_placement CHARACTER VARYING NULL,
+  -- act_placement CHARACTER VARYING NULL,
+
+  -- break out in a table
+  -- est_housing_series CHARACTER VARYING NULL DEFAULT NULL,
+  -- act_housing_series CHARACTER VARYING NULL DEFAULT NULL,
+
+  
+
+
+  -- break out in a table
+  
+  -- est_drive_side CHARACTER VARYING NULL DEFAULT NULL,
+  -- act_drive_side CHARACTER VARYING NULL DEFAULT NULL,
+
+  -- break out in a table
+  -- est_hembar CHARACTER VARYING NULL DEFAULT NULL,
+  -- act_hembar CHARACTER VARYING NULL DEFAULT NULL,
+
+  -- break out in a table
+  -- est_pilebrush CHARACTER VARYING NULL DEFAULT NULL,
+  -- act_pilebrush CHARACTER VARYING NULL DEFAULT NULL,
+  
+  -- Break out in a table
+  -- est_brush_location CHARACTER VARYING NULL DEFAULT NULL,
+  -- act_brush_location CHARACTER VARYING NULL DEFAULT NULL,
+ 
+ -- Break out in a table
+ -- est_cord_length CHARACTER VARYING NULL DEFAULT NULL,
+ -- act_cord_length CHARACTER VARYING NULL DEFAULT NULL,
+ 
+ -- Break out in a table
+ -- est_mount_type CHARACTER VARYING NULL DEFAULT NULL,
+ -- act_mount_type CHARACTER VARYING NULL DEFAULT NULL,
+ 
+  -- break out in a table
+  -- est_top_opening_width CHARACTER VARYING NULL DEFAULT NULL,
+  -- act_top_opening_width CHARACTER VARYING NULL DEFAULT NULL,
+  --act_top_level CHARACTER VARYING NULL DEFAULT NULL,
+  
   act_bottom_opening_width CHARACTER VARYING NULL DEFAULT NULL,
   act_bottom_level CHARACTER VARYING NULL DEFAULT NULL,
   act_left_opening_height CHARACTER VARYING NULL DEFAULT NULL,
   act_left_plumb CHARACTER VARYING NULL DEFAULT NULL,
   act_right_opening_height CHARACTER VARYING NULL DEFAULT NULL,
   act_right_plumb CHARACTER VARYING NULL DEFAULT NULL,
-  est_left_buildout CHARACTER VARYING NULL DEFAULT NULL,
-  act_left_buildout CHARACTER VARYING NULL DEFAULT NULL,
-  est_right_buildout CHARACTER VARYING NULL DEFAULT NULL,
-  act_right_buildout CHARACTER VARYING NULL DEFAULT NULL,
-  est_add_buildout CHARACTER VARYING NULL DEFAULT NULL,
-  act_add_buildout CHARACTER VARYING NULL DEFAULT NULL,
-  est_left_track CHARACTER VARYING NULL DEFAULT NULL,
-  act_left_track CHARACTER VARYING NULL DEFAULT NULL,
-  est_right_track CHARACTER VARYING NULL DEFAULT NULL,
-  act_right_track CHARACTER VARYING NULL DEFAULT NULL,
   act_starting_point CHARACTER VARYING NULL DEFAULT NULL,
   CONSTRAINT rainier_pk PRIMARY KEY (rainier_id)
 );
 
+-- break out in a table
+--   est_left_buildout CHARACTER VARYING NULL DEFAULT NULL,
+ -- act_left_buildout CHARACTER VARYING NULL DEFAULT NULL,
+ -- est_right_buildout CHARACTER VARYING NULL DEFAULT NULL,
+ -- act_right_buildout CHARACTER VARYING NULL DEFAULT NULL,
+ -- est_add_buildout CHARACTER VARYING NULL DEFAULT NULL,
+ -- act_add_buildout CHARACTER VARYING NULL DEFAULT NULL,
 
+
+-- break out in a table
+-- est_left_track CHARACTER VARYING NULL DEFAULT NULL,
+ -- act_left_track CHARACTER VARYING NULL DEFAULT NULL,
+ -- est_right_track CHARACTER VARYING NULL DEFAULT NULL,
+ -- act_right_track CHARACTER VARYING NULL DEFAULT NULL,
 -- -----------------------------------------------------
 -- Table sunscreen
 -- -----------------------------------------------------
@@ -534,6 +561,81 @@ CREATE TABLE IF NOT EXISTS measurement
   CONSTRAINT measurement_pk PRIMARY KEY (measurement_id)
 );
 
+
+-- -----------------------------------------------------
+-- Table customization
+-- -----------------------------------------------------
+  CREATE TABLE IF NOT EXISTS customization
+  (
+    customization_id SERIAL,
+    product_id INTEGER NOT NULL,
+    measurment_id INTEGER NOT NULL,
+    frame_size_id INTEGER NOT NULL,
+    fastener_id INTEGER NOT NULL,
+    color_id INTEGER NOT NULL,
+    mesh_id INTEGER NOT NULL,
+    mirage_3500_id INTEGER NULL,
+    mirage_id INTEGER NULL,
+    rainier_id INTEGER NULL,
+    door_id INTEGER NULL,
+    hale_screen_model_id INTEGER NULL,
+    phantom_id INTEGER NULL,
+    wizard_smart_screen_id INTEGER NULL,
+    viewguard_ide INTEGER NULL,
+    sunscreen_id INTEGER NULL,
+    hale_door_id INTEGER NULL,
+    general_retract_control_id INTEGER NULL,
+    CONSTRAINT customization_pk PRIMARY KEY (customization_id),
+    INDEX customization_fk1_product_idx (product_id),
+    INDEX customization_fk2_measurement_idx (measurement_id)
+    INDEX customization_fk3_frame_size_idx (frame_size_id),
+    INDEX customization_fk4_fastener_idx (fastener_id),
+    INDEX customization_fk5_color_idx (color_id),
+    INDEX customization_fk6_mesh (mesh_id),
+    INDEX customization_fk7_mirage_3500_mesh (mirage_3500_id),
+    INDEX customization_fk8_mirage (mirage_id),
+    INDEX customization_fk9_rainier (rainier_id)
+    INDEX customization_fk10_door (door_id),
+    INDEX customization_fk11_hale_screen_model (hale_screen_model_id)
+    INDEX customization_fk12_phantom_idx(phantom_id),
+    INDEX customization_fk13_wizard_smart_idx(wizard_smart_screen_id),
+        INDEX customization_fk14_viewgaurd_idx(viewguard_id),
+    INDEX customization_fk16_hale_door_idx(hale_door_id),
+    INDEX customization_fk17_general_retract_idx(genegeneral_retract_control_id),,
+       CONSTRAINT product_pk PRIMARY KEY (product_id),  
+    CONSTRAINT customization_fk1
+    FOREIGN KEY (product_id)
+    REFERENCES product (product_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    
+    FOREIGN KEY measurement    
+
+
+    
+1 
+
+
+  --  CONSTRAINT order_log_pk PRIMARY KEY (order_log_id),
+  -- INDEX fk_order_log_order1_idx (order_id),
+  -- INDEX fk_order_log_account1_idx (account_id),
+  -- INDEX fk_order_log_customer1_idx (customer_id),
+  -- CONSTRAINT order_log_fk1
+  --   FOREIGN KEY (customer_id)
+  --   REFERENCES customer (customer_id)
+  --   ON DELETE CASCADE
+  --   ON UPDATE CASCADE,
+  -- CONSTRAINT order_log_fk2
+  --   FOREIGN KEY (account_id)
+  --   REFERENCES account (account_id)
+  --   ON DELETE CASCADE
+  --   ON UPDATE CASCADE,
+  -- CONSTRAINT order_log_fk3
+  --   FOREIGN KEY (order_id)
+  --   REFERENCES public.order (order_id)
+  --   ON DELETE CASCADE
+  --   ON UPDATE CASCADE 
+  )
 
 -- -----------------------------------------------------
 -- Table nws_measurement
