@@ -128,23 +128,6 @@ CREATE TABLE IF NOT EXISTS customer_address
 );
 
 
--- -----------------------------------------------------
--- Table door
--- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS door 
-(
-  door_id SERIAL,
-  slide_type CHARACTER VARYING NOT NULL,
-  slide_color CHARACTER VARYING NOT NULL,
-  wheels_num INTEGER NOT NULL,
-  swing_type CHARACTER VARYING NOT NULL,
-  swing_color CHARACTER VARYING NOT NULL,
-  opening_side CHARACTER(2) NOT NULL,
-  handle_style CHARACTER VARYING NOT NULL,
-  CONSTRAINT door_pk PRIMARY KEY (door_id)
-);
-
 -- Account Type Creation
 DROP TYPE IF EXISTS account_type CASCADE;
 CREATE TYPE account_type AS ENUM
@@ -167,6 +150,36 @@ CREATE TABLE IF NOT EXISTS account
 
 
 -- -----------------------------------------------------
+-- Table order_log
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS order_log 
+(
+  order_log_id SERIAL,
+  order_id INTEGER NOT NULL,
+  account_id INTEGER NOT NULL,
+  customer_id INTEGER NOT NULL,
+  actual_date DATE NULL DEFAULT NULL,
+  CONSTRAINT order_log_pk PRIMARY KEY (order_log_id),
+  CONSTRAINT order_log_fk1
+    FOREIGN KEY (customer_id)
+    REFERENCES customer (customer_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT order_log_fk2
+    FOREIGN KEY (account_id)
+    REFERENCES account (account_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT order_log_fk3
+    FOREIGN KEY (order_id)
+    REFERENCES public.order (order_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+
+-- -----------------------------------------------------
 -- Table product
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS product
@@ -175,6 +188,24 @@ CREATE TABLE IF NOT EXISTS product
   product_name CHARACTER VARYING NOT NULL,
   CONSTRAINT product_pk PRIMARY KEY (product_id)
 );
+
+-- -----------------------------------------------------
+-- Table door
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS door 
+(
+  door_id SERIAL,
+  slide_type CHARACTER VARYING NOT NULL,
+  slide_color CHARACTER VARYING NOT NULL,
+  wheels_num INTEGER NOT NULL,
+  swing_type CHARACTER VARYING NOT NULL,
+  swing_color CHARACTER VARYING NOT NULL,
+  opening_side CHARACTER(2) NOT NULL,
+  handle_style CHARACTER VARYING NOT NULL,
+  CONSTRAINT door_pk PRIMARY KEY (door_id)
+);
+
 
 -- -----------------------------------------------------
 -- Table general_retract_control
@@ -327,36 +358,6 @@ CREATE TABLE IF NOT EXISTS new_window_screen
   est_height_plus_minus CHARACTER,
   act_height_plus_minus CHARACTER,
   CONSTRAINT nws_pk PRIMARY KEY (nws_id)
-);
-
-
--- -----------------------------------------------------
--- Table order_log
--- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS order_log 
-(
-  order_log_id SERIAL,
-  order_id INTEGER NOT NULL,
-  account_id INTEGER NOT NULL,
-  customer_id INTEGER NOT NULL,
-  actual_date DATE NULL DEFAULT NULL,
-  CONSTRAINT order_log_pk PRIMARY KEY (order_log_id),
-  CONSTRAINT order_log_fk1
-    FOREIGN KEY (customer_id)
-    REFERENCES customer (customer_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT order_log_fk2
-    FOREIGN KEY (account_id)
-    REFERENCES account (account_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT order_log_fk3
-    FOREIGN KEY (order_id)
-    REFERENCES public.order (order_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
 );
 
 
