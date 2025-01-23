@@ -20,20 +20,20 @@ DROP TABLE IF EXISTS color;
 DROP TABLE IF EXISTS frame_size;
 DROP TABLE IF EXISTS fastener;
 DROP TABLE IF EXISTS mesh; 
-DROP TABLE IF EXISTS new_window_screen; -- ADD
+DROP TABLE IF EXISTS new_window_screen;
 DROP TABLE IF EXISTS phantom;
 DROP TABLE IF EXISTS rainier;
-DROP TABLE IF EXISTS placement; -- ADD
-DROP TABLE IF EXISTS housing_series; -- ADD
-DROP TABLE IF EXISTS drive_side; -- ADD
-DROP TABLE IF EXISTS hembar; -- ADD
-DROP TABLE IF EXISTS pilebrush; -- ADD
-DROP TABLE IF EXISTS brush_location; -- ADD
-DROP TABLE IF EXISTS cord_length; -- ADD
-DROP TABLE IF EXISTS mount_type; -- ADD
-DROP TABLE IF EXISTS top_opening; -- ADD
-DROP TABLE IF EXISTS buildout; -- ADD
-DROP TABLE IF EXISTS track; -- ADD
+DROP TABLE IF EXISTS placement;
+DROP TABLE IF EXISTS housing_series;
+DROP TABLE IF EXISTS drive_side;
+DROP TABLE IF EXISTS hembar;
+DROP TABLE IF EXISTS pilebrush;
+DROP TABLE IF EXISTS brush_location;
+DROP TABLE IF EXISTS cord_length;
+DROP TABLE IF EXISTS mount_type;
+DROP TABLE IF EXISTS top_opening;
+DROP TABLE IF EXISTS buildout;
+DROP TABLE IF EXISTS track;
 DROP TABLE IF EXISTS sunscreen;
 DROP TABLE IF EXISTS viewguard; 
 DROP TABLE IF EXISTS wizard_smart_screen;
