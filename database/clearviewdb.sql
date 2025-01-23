@@ -2,8 +2,8 @@
 -- Drop Statements
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS customization;
-DROP TABLE IF EXISTS customer_address;
 DROP TABLE IF EXISTS cust_order;
+DROP TABLE IF EXISTS customer_address;
 DROP TABLE IF EXISTS order_log;
 DROP TABLE IF EXISTS public.order;
 DROP TABLE IF EXISTS address;
@@ -48,6 +48,9 @@ CREATE TABLE IF NOT EXISTS address
   address_id SERIAL,
   address_line1 CHARACTER VARYING NOT NULL,
   address_line2 CHARACTER VARYING NOT NULL,
+  address_city CHARACTER VARYING NOT NULL,
+  address_state CHARACTER VARYING NOT NULL,
+  address_zip CHARACTER VARYING NOT NULL,
   CONSTRAINT address_pk PRIMARY KEY (address_id)
 );
 
@@ -59,8 +62,8 @@ CREATE TABLE IF NOT EXISTS address
 CREATE TABLE IF NOT EXISTS customer 
 (
   customer_id SERIAL,
-  c_fname CHARACTER VARYING NOT NULL,
-  c_lname CHARACTER VARYING NOT NULL,
+  customer_firstname CHARACTER VARYING NOT NULL,
+  customer_lastname CHARACTER VARYING NOT NULL,
   CONSTRAINT customer_pk PRIMARY KEY (customer_id)
 );
 
@@ -80,30 +83,6 @@ CREATE TABLE IF NOT EXISTS public.order
   quantity INTEGER NOT NULL,
   CONSTRAINT order_pk PRIMARY KEY (order_id)
 );
-
-
--- -----------------------------------------------------
--- Table cust_order
--- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS cust_order 
-(
-  cust_order_id SERIAL,
-  customer_id INTEGER NOT NULL,
-  order_id INTEGER NOT NULL,
-  CONSTRAINT cust_order_pk PRIMARY KEY (cust_order_id),
-  CONSTRAINT cust_order_fk1
-    FOREIGN KEY (customer_id)
-    REFERENCES customer (customer_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT cust_order_fk2
-    FOREIGN KEY (order_id)
-    REFERENCES public.order (order_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE
-);
-
 
 -- -----------------------------------------------------
 -- Table customer_address
@@ -126,6 +105,37 @@ CREATE TABLE IF NOT EXISTS customer_address
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
+
+-- -----------------------------------------------------
+-- Table cust_order
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS cust_order 
+(
+  cust_order_id SERIAL,
+  customer_id INTEGER NOT NULL,
+  order_id INTEGER NOT NULL,
+  customer_address_id INTEGER NOT NULL,
+  CONSTRAINT cust_order_pk PRIMARY KEY (cust_order_id),
+  CONSTRAINT cust_order_fk1
+    FOREIGN KEY (customer_id)
+    REFERENCES customer (customer_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT cust_order_fk2
+    FOREIGN KEY (order_id)
+    REFERENCES public.order (order_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT cust_order_fk3
+    FOREIGN KEY (customer_address_id)
+    REFERENCES customer_address (customer_address_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
+
+
 
 
 -- Account Type Creation
