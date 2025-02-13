@@ -101,9 +101,9 @@ ordersController.buildCreateMirage3500 = async function(req, res){
     })
 }
 ordersController.buildConfirmMirage3500 = async function(req, res){
-    res.render('orders/createMirage3500', {
-        title: 'Create Mirage 3500 order',
-        link: 'orders/createMirage3500',
+    res.render('orders/confirmMirage3500', {
+        title: 'Confirm Mirage 3500 order',
+        link: 'orders/confirmMirage3500',
         errors: null
     })
 }
@@ -116,9 +116,9 @@ ordersController.buildCreateMirage = async function(req, res){
     })
 }
 ordersController.buildConfirmMirage = async function(req, res){
-    res.render('orders/createMirage', {
-        title: 'Create Mirage order',
-        link: 'orders/createMirage',
+    res.render('orders/confirmMirage', {
+        title: 'Confirm Mirage order',
+        link: 'orders/confirmMirage',
         errors: null
     })
 }
@@ -131,13 +131,27 @@ ordersController.buildCreateRainier = async function(req, res){
     })
 }
 ordersController.buildConfirmRainier = async function(req, res){
-    res.render('orders/createRainier', {
-        title: 'Create order',
-        link: 'orders/createRainier',
+    res.render('orders/confirmRainier', {
+        title: 'Confirm order',
+        link: 'orders/confirmRainier',
         errors: null
     })
 }
 
+ordersController.buildCreateNWS = async function(req, res){
+    res.render('orders/createNWS', {
+        title: 'Create order',
+        link: 'orders/createNWS',
+        errors: null
+    })
+}
+ordersController.buildConfirmNWS = async function(req, res){
+    res.render('orders/confirmNWS', {
+        title: 'Confirm order',
+        link: 'orders/confirmNWS',
+        errors: null
+    })
+}
 
 
 
