@@ -138,6 +138,20 @@ ordersController.buildConfirmRainier = async function(req, res){
     })
 }
 
+ordersController.buildCreateNWS = async function(req, res){
+    res.render('orders/createNWS', {
+        title: 'Create order',
+        link: 'orders/createNWS',
+        errors: null
+    })
+}
+ordersController.buildConfirmNWS = async function(req, res){
+    res.render('orders/confirmNWS', {
+        title: 'Confirm order',
+        link: 'orders/confirmNWS',
+        errors: null
+    })
+}
 
 
 
