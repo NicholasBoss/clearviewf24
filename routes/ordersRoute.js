@@ -19,5 +19,8 @@ router.get("/confirmMirage", util.checkLogin, util.handleErrors(ordersController
 router.get("/createRainier", util.checkLogin, util.handleErrors(ordersController.buildCreateRainier))
 router.get("/confirmRainier", util.checkLogin, util.handleErrors(ordersController.buildConfirmRainier))
 
+router.get("/createNWS", util.checkLogin, util.handleErrors(ordersController.buildCreateNWS))
+router.get("/confirmNWS", util.checkLogin, util.handleErrors(ordersController.buildConfirmNWS))
+
 // Export
 module.exports = router

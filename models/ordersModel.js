@@ -11,6 +11,9 @@ async function createOrder(product_name, measurement_name, size_type, fastener_t
         else if (product_name == 'Rainier'){
             createRainierOrder(product_name, measurement_name, size_type, fastener_type, color_name, mesh_type)
         }
+        else if (product_name == 'NWS'){
+            createNWSOrder(product_name, measurement_name, size_type, fastener_type, color_name, mesh_type)
+        }
         else if (product_name == 'Door'){
             createDoorOrder(product_name, measurement_name, size_type, fastener_type, color_name, mesh_type)
         }
@@ -57,6 +60,14 @@ async function createMirageOrder(product_name, measurement_name, size_type, fast
 }
 
 async function createRainierOrder(product_name, measurement_name, size_type, fastener_type, color_name, mesh_type){
+    try {
+
+    } catch (error) {
+        return error.message
+    }
+}
+
+async function createNWSOrder(product_name, measurement_name, size_type, fastener_type, color_name, mesh_type){
     try {
 
     } catch (error) {
