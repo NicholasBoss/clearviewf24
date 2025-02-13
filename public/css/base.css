@@ -1,14 +1,18 @@
 :root{
     /* Site Colors */
-    --primary-color: ;
-    --secondary-color: #1E6DE3;
+    --primary-color: #6EBAEF;    
+    --secondary-color: #1F6DE2;
+    --accent1-color: #474747;
+    --accent2-color: #93B0F5;
+    --accent3-color: #0F172D;
     --ham-color: var(--secondary-color);
 	--nav-hover-background-color: var(--secondary-color);
     --nav-transparent-background-color: #79d4bd;
+    /* --nav-transparent-background-color: var(--primary-color); */
 }
 
 header {
-	background-color: #6296e6;
+	background-color: var(--secondary-color);
 }
 
 #main-header {
