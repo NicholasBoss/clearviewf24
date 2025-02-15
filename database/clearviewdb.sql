@@ -6,18 +6,18 @@ DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS cust_order;
 DROP TABLE IF EXISTS customer_address;
 DROP TABLE IF EXISTS door;
-DROP TABLE IF EXISTS account; 
-DROP TABLE IF EXISTS general_retract_control; -- ADD
-DROP TABLE IF EXISTS hale_door; -- ADD
-DROP TABLE IF EXISTS hale_screen_model; -- ADD
+DROP TABLE IF EXISTS account;
+DROP TABLE IF EXISTS general_retract_control;
+DROP TABLE IF EXISTS hale_door;
+DROP TABLE IF EXISTS hale_screen_model;
 DROP TABLE IF EXISTS mirage;
 DROP TABLE IF EXISTS mirage_3500;
 DROP TABLE IF EXISTS color;
 DROP TABLE IF EXISTS frame_size;
 DROP TABLE IF EXISTS fastener;
-DROP TABLE IF EXISTS mesh; 
-DROP TABLE IF EXISTS public.window; -- REMOVE
-DROP TABLE IF EXISTS new_window_screen; -- ADD
+DROP TABLE IF EXISTS mesh;
+DROP TABLE IF EXISTS public.window;
+DROP TABLE IF EXISTS new_window_screen;
 DROP TABLE IF EXISTS order_log;
 DROP TABLE IF EXISTS phantom;
 DROP TABLE IF EXISTS rainier;
@@ -25,16 +25,15 @@ DROP TABLE IF EXISTS sunscreen;
 DROP TABLE IF EXISTS view_guard;
 DROP TABLE IF EXISTS wizard_smart_screen;
 DROP TABLE IF EXISTS measurement;
-DROP TABLE IF EXISTS customization;
-DROP TABLE IF EXISTS nws_measurement; -- REMOVE
-DROP TABLE IF EXISTS rainier_color; -- REMOVE
-DROP TABLE IF EXISTS mirage_3500_mesh; -- REMOVE
-DROP TABLE IF EXISTS mirage_mesh; -- REMOVE
-DROP TABLE IF EXISTS mirage_3500_color; -- REMOVE
-DROP TABLE IF EXISTS mirage_color; -- REMOVE
-DROP TABLE IF EXISTS rainier_order; -- REMOVE
-DROP TABLE IF EXISTS mirage_order; -- REMOVE
-DROP TABLE IF EXISTS mirage_3500_order; -- REMOVE
+DROP TABLE IF EXISTS nws_measurement;
+DROP TABLE IF EXISTS rainier_color;
+DROP TABLE IF EXISTS mirage_3500_mesh;
+DROP TABLE IF EXISTS mirage_mesh;
+DROP TABLE IF EXISTS mirage_3500_color;
+DROP TABLE IF EXISTS mirage_color;
+DROP TABLE IF EXISTS rainier_order;
+DROP TABLE IF EXISTS mirage_order;
+DROP TABLE IF EXISTS mirage_3500_order;
 DROP TABLE IF EXISTS nws_order;
 
 -- -----------------------------------------------------
@@ -44,8 +43,8 @@ DROP TABLE IF EXISTS nws_order;
 CREATE TABLE IF NOT EXISTS address 
 (
   address_id SERIAL,
-  address_line1 CHARACTER VARYING NOT NULL,
-  address_line2 CHARACTER VARYING NOT NULL,
+  address_line1 BOOLEAN NULL,
+  address_line2 BOOLEAN NULL,
   CONSTRAINT address_pk PRIMARY KEY (address_id)
 );
 
@@ -57,8 +56,8 @@ CREATE TABLE IF NOT EXISTS address
 CREATE TABLE IF NOT EXISTS customer 
 (
   customer_id SERIAL,
-  c_fname CHARACTER VARYING NOT NULL,
-  c_lname CHARACTER VARYING NOT NULL,
+  c_fname BOOLEAN NULL,
+  c_lname BOOLEAN NULL,
   CONSTRAINT customer_pk PRIMARY KEY (customer_id)
 );
 
@@ -137,13 +136,13 @@ CREATE TABLE IF NOT EXISTS customer_address
 CREATE TABLE IF NOT EXISTS door 
 (
   door_id SERIAL,
-  slide_type CHARACTER VARYING NOT NULL,
-  slide_color CHARACTER VARYING NOT NULL,
+  slide_type BOOLEAN NULL,
+  slide_color BOOLEAN NULL,
   wheels_num INTEGER NOT NULL,
-  swing_type CHARACTER VARYING NOT NULL,
-  swing_color CHARACTER VARYING NOT NULL,
+  swing_type BOOLEAN NULL,
+  swing_color BOOLEAN NULL,
   opening_side CHARACTER(2) NOT NULL,
-  handle_style CHARACTER VARYING NOT NULL,
+  handle_style BOOLEAN NULL,
   CONSTRAINT door_pk PRIMARY KEY (door_id)
 );
 
@@ -159,10 +158,10 @@ CREATE TYPE account_type AS ENUM
 CREATE TABLE IF NOT EXISTS account 
 (
   account_id SERIAL,
-  account_firstname CHARACTER VARYING NOT NULL,
-  account_lastname CHARACTER VARYING NOT NULL,
-  account_email CHARACTER VARYING NOT NULL,
-  account_password CHARACTER VARYING NOT NULL,
+  account_firstname BOOLEAN NULL,
+  account_lastname BOOLEAN NULL,
+  account_email BOOLEAN NULL,
+  account_password BOOLEAN NULL,
   account_type account_type NOT NULL DEFAULT 'Employee'::account_type,
   CONSTRAINT account_pk PRIMARY KEY (account_id)
 );
@@ -175,17 +174,17 @@ CREATE TABLE IF NOT EXISTS account
 CREATE TABLE IF NOT EXISTS general_retract_control 
 (
   general_retract_control_id SERIAL,
-  door_type CHARACTER VARYING NOT NULL,
-  door_mount CHARACTER VARYING NOT NULL,
-  opening_side CHARACTER VARYING NOT NULL,
-  fraction CHARACTER VARYING NOT NULL,
-  mesh CHARACTER VARYING NOT NULL,
-  mohair CHARACTER VARYING NOT NULL,
-  mohair_position CHARACTER VARYING NOT NULL,
-  top_adapter CHARACTER VARYING NOT NULL,
-  build_out CHARACTER VARYING NOT NULL,
-  btm_adapter CHARACTER VARYING NOT NULL,
-  btm_adapter_color CHARACTER VARYING NOT NULL,
+  door_type BOOLEAN NULL,
+  door_mount BOOLEAN NULL,
+  opening_side BOOLEAN NULL,
+  fraction BOOLEAN NULL,
+  mesh BOOLEAN NULL,
+  mohair BOOLEAN NULL,
+  mohair_position BOOLEAN NULL,
+  top_adapter BOOLEAN NULL,
+  build_out BOOLEAN NULL,
+  btm_adapter BOOLEAN NULL,
+  btm_adapter_color BOOLEAN NULL,
   CONSTRAINT grc_pk PRIMARY KEY (general_retract_control_id)
 );
 
@@ -197,14 +196,14 @@ CREATE TABLE IF NOT EXISTS general_retract_control
 CREATE TABLE IF NOT EXISTS hale_door 
 (
   hale_door_id SERIAL,
-  size CHARACTER VARYING NOT NULL,
-  flap_config CHARACTER VARYING NOT NULL,
-  door_color CHARACTER VARYING NOT NULL,
-  sec_cover_load CHARACTER VARYING NOT NULL,
+  size BOOLEAN NULL,
+  flap_config BOOLEAN NULL,
+  door_color BOOLEAN NULL,
+  sec_cover_load BOOLEAN NULL,
   second_ext_cover CHARACTER(1) NOT NULL,
   rain_cap CHARACTER(1) NOT NULL,
   flap CHARACTER(1) NOT NULL,
-  thickness CHARACTER VARYING NOT NULL,
+  thickness BOOLEAN NULL,
   CONSTRAINT hale_door_pk PRIMARY KEY (table_id)
 );
 
@@ -216,11 +215,11 @@ CREATE TABLE IF NOT EXISTS hale_door
 CREATE TABLE IF NOT EXISTS hale_screen_model 
 (
   hale_screen_model_id SERIAL,
-  model_size CHARACTER VARYING NOT NULL,
-  model_color CHARACTER VARYING NOT NULL,
-  model_thickness CHARACTER VARYING NOT NULL,
+  model_size BOOLEAN NULL,
+  model_color BOOLEAN NULL,
+  model_thickness BOOLEAN NULL,
   model_has_flap CHARACTER(2) NOT NULL,
-  model_placement CHARACTER VARYING NOT NULL,
+  model_placement BOOLEAN NULL,
   CONSTRAINT hale_screen_model_pk PRIMARY KEY (hale_screen_model_id)
 );
 
@@ -232,7 +231,7 @@ CREATE TABLE IF NOT EXISTS hale_screen_model
 CREATE TABLE IF NOT EXISTS mirage 
 (
   mirage_id SERIAL,
-  mirage_build_out CHARACTER VARYING NOT NULL,
+  mirage_build_out BOOLEAN NULL,
   CONSTRAINT mirage_pk PRIMARY KEY (mirage_id)
 );
 
@@ -244,7 +243,7 @@ CREATE TABLE IF NOT EXISTS mirage
 CREATE TABLE IF NOT EXISTS mirage_3500 
 (
   mirage_3500_id SERIAL,
-  mirage_3500_handle CHARACTER VARYING NOT NULL,
+  mirage_3500_handle BOOLEAN NULL,
   CONSTRAINT mirage_3500_pk PRIMARY KEY (mirage_3500_id)
 );
 
@@ -256,7 +255,7 @@ CREATE TABLE IF NOT EXISTS mirage_3500
 CREATE TABLE IF NOT EXISTS color 
 (
   color_id SERIAL,
-  color_name CHARACTER VARYING NOT NULL,
+  color_name BOOLEAN NULL,
   CONSTRAINT color_pk PRIMARY KEY (color_id)
 );
 
@@ -268,7 +267,7 @@ CREATE TABLE IF NOT EXISTS color
 CREATE TABLE IF NOT EXISTS frame_size 
 (
   frame_size_id SERIAL,
-  size_type CHARACTER VARYING NOT NULL,
+  size_type BOOLEAN NULL,
   CONSTRAINT frame_size_pk PRIMARY KEY (frame_size_id)
 );
 
@@ -280,7 +279,7 @@ CREATE TABLE IF NOT EXISTS frame_size
 CREATE TABLE IF NOT EXISTS fastener 
 (
   fastener_id SERIAL,
-  fastener_type CHARACTER VARYING NOT NULL,
+  fastener_type BOOLEAN NULL,
   CONSTRAINT fastener_pk PRIMARY KEY (fastener_id)
 );
 
@@ -292,7 +291,7 @@ CREATE TABLE IF NOT EXISTS fastener
 CREATE TABLE IF NOT EXISTS mesh 
 (
   mesh_id SERIAL,
-  mesh_type CHARACTER VARYING NOT NULL,
+  mesh_type BOOLEAN NULL,
   CONSTRAINT mesh_pk PRIMARY KEY (mesh_id)
 );
 
@@ -304,7 +303,7 @@ CREATE TABLE IF NOT EXISTS mesh
 CREATE TABLE IF NOT EXISTS public.window 
 (
   window_id SERIAL,
-  tab_spring CHARACTER VARYING NOT NULL,
+  tab_spring BOOLEAN NULL,
   color_id INTEGER NOT NULL,
   frame_size_id INTEGER NOT NULL,
   fastener_id INTEGER NOT NULL,
@@ -344,8 +343,8 @@ CREATE TABLE IF NOT EXISTS public.window
 CREATE TABLE IF NOT EXISTS new_window_screen 
 (
   nws_id SERIAL,
-  width_inch CHARACTER VARYING NOT NULL,
-  height_inch CHARACTER VARYING NOT NULL,
+  width_inch BOOLEAN NULL,
+  height_inch BOOLEAN NULL,
   window_id INTEGER NOT NULL,
   CONSTRAINT nws_pk PRIMARY KEY (nws_id),
   INDEX nws_fk1_idx (window_id),
@@ -397,18 +396,18 @@ CREATE TABLE IF NOT EXISTS order_log
 CREATE TABLE IF NOT EXISTS phantom 
 (
   phantom_id SERIAL,
-  phantom_color CHARACTER VARYING NOT NULL,
-  phantom_build_out CHARACTER VARYING NOT NULL DEFAULT 'None',
+  phantom_color BOOLEAN NULL,
+  phantom_build_out BOOLEAN NULL DEFAULT 'None',
   meshlock CHARACTER(1) NOT NULL,
   phantom_mesh CHARACTER VARYING(200) NOT NULL,
   meshlock_mesh CHARACTER VARYING(100) NOT NULL,
   type_of_screen CHARACTER VARYING(60) NOT NULL,
-  screen_color CHARACTER VARYING NOT NULL,
-  wood_type CHARACTER VARYING NOT NULL,
-  mount CHARACTER VARYING NOT NULL,
-  hembar CHARACTER VARYING NOT NULL,
-  tracks CHARACTER VARYING NOT NULL,
-  mesh CHARACTER VARYING NOT NULL,
+  screen_color BOOLEAN NULL,
+  wood_type BOOLEAN NULL,
+  mount BOOLEAN NULL,
+  hembar BOOLEAN NULL,
+  tracks BOOLEAN NULL,
+  mesh BOOLEAN NULL,
   CONSTRAINT phantom_pk PRIMARY KEY (phantom_id)
 );
 
@@ -417,75 +416,67 @@ CREATE TABLE IF NOT EXISTS phantom
 -- Table rainier
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS rainier 
+-- -----------------------------------------------------
+-- Table Rainier Housing
+-- -----------------------------------------------------
+
+CREATE TABLE rainier_housing
+(
+rainier_housing_id SERIAL,
+est_housing_series BOOLEAN NOT NULL,
+act_housing_series BOOLEAN NOT NULL
+);
+
+-- -----------------------------------------------------
+-- Table rainier_placement
+-- -----------------------------------------------------
+-- 
+CREATE TABLE rainier_placement
+(
+  rainier_placement_id SERIAL,
+  est_placement BOOLEAN NOT NULL,
+  act_placement BOOLEAN NOT NULL;
+);
+
+
+  est_drive_side BOOLEAN NULLL,
+  act_drive_side BOOLEAN NULLL,
+  est_hembar BOOLEAN NULLL,
+  act_hembar BOOLEAN NULLL,
+  est_pilebrush BOOLEAN NULLL,
+  act_pilebrush BOOLEAN NULLL,
+  est_brush_location BOOLEAN NULLL,
+  act_brush_location BOOLEAN NULLL,
+  est_cord_length BOOLEAN NULLL,
+  act_cord_length BOOLEAN NULLL,
+  est_mount_type BOOLEAN NULLL,
+  act_mount_type BOOLEAN NULLL,
+  est_top_opening_width BOOLEAN NULLL,
+  act_top_opening_width BOOLEAN NULLL,
+  act_top_level BOOLEAN NULLL,
+  act_bottom_opening_width BOOLEAN NULLL,
+  act_bottom_level BOOLEAN NULLL,
+  act_left_opening_height BOOLEAN NULLL,
+  act_left_plumb BOOLEAN NULLL,
+  act_right_opening_height BOOLEAN NULLL,
+  act_right_plumb BOOLEAN NULLL,
+  est_left_buildout BOOLEAN NULLL,
+  act_left_buildout BOOLEAN NULLL,
+  est_right_buildout BOOLEAN NULLL,
+  act_right_buildout BOOLEAN NULLL,
+  est_add_buildout BOOLEAN NULLL,
+  act_add_buildout BOOLEAN NULLL,
+  est_left_track BOOLEAN NULLL,
+  act_left_track BOOLEAN NULLL,
+  est_right_track BOOLEAN NULLL,
+  act_right_track BOOLEAN NULLL,
+  act_starting_point BOOLEAN NULLL,
+  CREATE TABLE IF NOT EXISTS rainier 
 (
   rainier_id SERIAL,
-  
-  -- break out in a table
-  -- est_placement CHARACTER VARYING NULL,
-  -- act_placement CHARACTER VARYING NULL,
-
-  -- break out in a table
-  -- est_housing_series CHARACTER VARYING NULL DEFAULT NULL,
-  -- act_housing_series CHARACTER VARYING NULL DEFAULT NULL,
-
-  
-
-
-  -- break out in a table
-  
-  -- est_drive_side CHARACTER VARYING NULL DEFAULT NULL,
-  -- act_drive_side CHARACTER VARYING NULL DEFAULT NULL,
-
-  -- break out in a table
-  -- est_hembar CHARACTER VARYING NULL DEFAULT NULL,
-  -- act_hembar CHARACTER VARYING NULL DEFAULT NULL,
-
-  -- break out in a table
-  -- est_pilebrush CHARACTER VARYING NULL DEFAULT NULL,
-  -- act_pilebrush CHARACTER VARYING NULL DEFAULT NULL,
-  
-  -- Break out in a table
-  -- est_brush_location CHARACTER VARYING NULL DEFAULT NULL,
-  -- act_brush_location CHARACTER VARYING NULL DEFAULT NULL,
- 
- -- Break out in a table
- -- est_cord_length CHARACTER VARYING NULL DEFAULT NULL,
- -- act_cord_length CHARACTER VARYING NULL DEFAULT NULL,
- 
- -- Break out in a table
- -- est_mount_type CHARACTER VARYING NULL DEFAULT NULL,
- -- act_mount_type CHARACTER VARYING NULL DEFAULT NULL,
- 
-  -- break out in a table
-  -- est_top_opening_width CHARACTER VARYING NULL DEFAULT NULL,
-  -- act_top_opening_width CHARACTER VARYING NULL DEFAULT NULL,
-  --act_top_level CHARACTER VARYING NULL DEFAULT NULL,
-  
-  act_bottom_opening_width CHARACTER VARYING NULL DEFAULT NULL,
-  act_bottom_level CHARACTER VARYING NULL DEFAULT NULL,
-  act_left_opening_height CHARACTER VARYING NULL DEFAULT NULL,
-  act_left_plumb CHARACTER VARYING NULL DEFAULT NULL,
-  act_right_opening_height CHARACTER VARYING NULL DEFAULT NULL,
-  act_right_plumb CHARACTER VARYING NULL DEFAULT NULL,
-  act_starting_point CHARACTER VARYING NULL DEFAULT NULL,
   CONSTRAINT rainier_pk PRIMARY KEY (rainier_id)
 );
 
--- break out in a table
---   est_left_buildout CHARACTER VARYING NULL DEFAULT NULL,
- -- act_left_buildout CHARACTER VARYING NULL DEFAULT NULL,
- -- est_right_buildout CHARACTER VARYING NULL DEFAULT NULL,
- -- act_right_buildout CHARACTER VARYING NULL DEFAULT NULL,
- -- est_add_buildout CHARACTER VARYING NULL DEFAULT NULL,
- -- act_add_buildout CHARACTER VARYING NULL DEFAULT NULL,
-
-
--- break out in a table
--- est_left_track CHARACTER VARYING NULL DEFAULT NULL,
- -- act_left_track CHARACTER VARYING NULL DEFAULT NULL,
- -- est_right_track CHARACTER VARYING NULL DEFAULT NULL,
- -- act_right_track CHARACTER VARYING NULL DEFAULT NULL,
 -- -----------------------------------------------------
 -- Table sunscreen
 -- -----------------------------------------------------
@@ -509,8 +500,8 @@ CREATE TABLE IF NOT EXISTS view_guard
   door_type CHARACTER VARYING(10) NOT NULL,
   number_of_slides INTEGER NOT NULL,
   color CHARACTER VARYING(10) NOT NULL,
-  handle_style CHARACTER VARYING NOT NULL,
-  deadbolt CHARACTER VARYING NOT NULL,
+  handle_style BOOLEAN NULL,
+  deadbolt BOOLEAN NULL,
   CONSTRAINT viewguard_pk PRIMARY KEY (viewguard_id)
 );
 
@@ -522,30 +513,30 @@ CREATE TABLE IF NOT EXISTS view_guard
 CREATE TABLE IF NOT EXISTS wizard_smart_screen 
 (
   wizard_smart_screen_id SERIAL,
-  location_on_house CHARACTER VARYING NOT NULL,
-  placement CHARACTER VARYING NOT NULL,
-  color CHARACTER VARYING NOT NULL,
-  fabric_type CHARACTER VARYING NOT NULL,
-  housing_size CHARACTER VARYING NOT NULL,
-  drive_side CHARACTER VARYING NOT NULL,
-  bottom_seal CHARACTER VARYING NOT NULL,
-  zipper_color CHARACTER VARYING NOT NULL,
-  probe_color CHARACTER VARYING NOT NULL,
-  cable_length CHARACTER VARYING NOT NULL,
-  top_opening_width CHARACTER VARYING NULL DEFAULT NULL,
-  top_level CHARACTER VARYING NOT NULL,
-  bottom_opening_width CHARACTER VARYING NOT NULL,
-  bottom_level CHARACTER VARYING NOT NULL,
-  left_opening_height CHARACTER VARYING NOT NULL,
-  left_plump CHARACTER VARYING NOT NULL,
-  right_opening_height CHARACTER VARYING NOT NULL,
-  right_plump CHARACTER VARYING NOT NULL,
-  two_by_two_angle CHARACTER VARYING NOT NULL,
-  track_type CHARACTER VARYING NOT NULL,
-  track_punched CHARACTER VARYING NOT NULL,
-  starting_poINTEGER CHARACTER VARYING NULL DEFAULT NULL,
-  order_width CHARACTER VARYING NOT NULL,
-  order_height CHARACTER VARYING NOT NULL,
+  location_on_house BOOLEAN NULL,
+  placement BOOLEAN NULL,
+  color BOOLEAN NULL,
+  fabric_type BOOLEAN NULL,
+  housing_size BOOLEAN NULL,
+  drive_side BOOLEAN NULL,
+  bottom_seal BOOLEAN NULL,
+  zipper_color BOOLEAN NULL,
+  probe_color BOOLEAN NULL,
+  cable_length BOOLEAN NULL,
+  top_opening_width BOOLEAN NULL,
+  top_level BOOLEAN NULL,
+  bottom_opening_width BOOLEAN NULL,
+  bottom_level BOOLEAN NULL,
+  left_opening_height BOOLEAN NULL,
+  left_plump BOOLEAN NULL,
+  right_opening_height BOOLEAN NULL,
+  right_plump BOOLEAN NULL,
+  two_by_two_angle BOOLEAN NULL,
+  track_type BOOLEAN NULL,
+  track_punched BOOLEAN NULL,
+  starting_poINTEGER BOOLEAN NULL,
+  order_width BOOLEAN NULL,
+  order_height BOOLEAN NULL,
   CONSTRAINT wss_pk PRIMARY KEY (wizard_smart_screen_id)
 );
 
@@ -557,85 +548,10 @@ CREATE TABLE IF NOT EXISTS wizard_smart_screen
 CREATE TABLE IF NOT EXISTS measurement 
 (
   measurement_id SERIAL,
-  measurement_name CHARACTER VARYING NOT NULL,
+  measurement_name BOOLEAN NULL,
   CONSTRAINT measurement_pk PRIMARY KEY (measurement_id)
 );
 
-
--- -----------------------------------------------------
--- Table customization
--- -----------------------------------------------------
-  CREATE TABLE IF NOT EXISTS customization
-  (
-    customization_id SERIAL,
-    product_id INTEGER NOT NULL,
-    measurment_id INTEGER NOT NULL,
-    frame_size_id INTEGER NOT NULL,
-    fastener_id INTEGER NOT NULL,
-    color_id INTEGER NOT NULL,
-    mesh_id INTEGER NOT NULL,
-    mirage_3500_id INTEGER NULL,
-    mirage_id INTEGER NULL,
-    rainier_id INTEGER NULL,
-    door_id INTEGER NULL,
-    hale_screen_model_id INTEGER NULL,
-    phantom_id INTEGER NULL,
-    wizard_smart_screen_id INTEGER NULL,
-    viewguard_ide INTEGER NULL,
-    sunscreen_id INTEGER NULL,
-    hale_door_id INTEGER NULL,
-    general_retract_control_id INTEGER NULL,
-    CONSTRAINT customization_pk PRIMARY KEY (customization_id),
-    INDEX customization_fk1_product_idx (product_id),
-    INDEX customization_fk2_measurement_idx (measurement_id)
-    INDEX customization_fk3_frame_size_idx (frame_size_id),
-    INDEX customization_fk4_fastener_idx (fastener_id),
-    INDEX customization_fk5_color_idx (color_id),
-    INDEX customization_fk6_mesh (mesh_id),
-    INDEX customization_fk7_mirage_3500_mesh (mirage_3500_id),
-    INDEX customization_fk8_mirage (mirage_id),
-    INDEX customization_fk9_rainier (rainier_id)
-    INDEX customization_fk10_door (door_id),
-    INDEX customization_fk11_hale_screen_model (hale_screen_model_id)
-    INDEX customization_fk12_phantom_idx(phantom_id),
-    INDEX customization_fk13_wizard_smart_idx(wizard_smart_screen_id),
-        INDEX customization_fk14_viewgaurd_idx(viewguard_id),
-    INDEX customization_fk16_hale_door_idx(hale_door_id),
-    INDEX customization_fk17_general_retract_idx(genegeneral_retract_control_id),,
-       CONSTRAINT product_pk PRIMARY KEY (product_id),  
-    CONSTRAINT customization_fk1
-    FOREIGN KEY (product_id)
-    REFERENCES product (product_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    
-    FOREIGN KEY measurement    
-
-
-    
-1 
-
-
-  --  CONSTRAINT order_log_pk PRIMARY KEY (order_log_id),
-  -- INDEX fk_order_log_order1_idx (order_id),
-  -- INDEX fk_order_log_account1_idx (account_id),
-  -- INDEX fk_order_log_customer1_idx (customer_id),
-  -- CONSTRAINT order_log_fk1
-  --   FOREIGN KEY (customer_id)
-  --   REFERENCES customer (customer_id)
-  --   ON DELETE CASCADE
-  --   ON UPDATE CASCADE,
-  -- CONSTRAINT order_log_fk2
-  --   FOREIGN KEY (account_id)
-  --   REFERENCES account (account_id)
-  --   ON DELETE CASCADE
-  --   ON UPDATE CASCADE,
-  -- CONSTRAINT order_log_fk3
-  --   FOREIGN KEY (order_id)
-  --   REFERENCES public.order (order_id)
-  --   ON DELETE CASCADE
-  --   ON UPDATE CASCADE 
-  )
 
 -- -----------------------------------------------------
 -- Table nws_measurement
