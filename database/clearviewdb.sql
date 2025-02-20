@@ -438,40 +438,151 @@ CREATE TABLE rainier_placement
   act_placement BOOLEAN NOT NULL;
 );
 
+CREATE TABLE rainier_drive_side
+(
+  rainier_drive_side_id SERIAL,
+  est_drive_side BOOLEAN NULL,
+  act_drive_side BOOLEAN NULL
+);
 
-  est_drive_side BOOLEAN NULLL,
-  act_drive_side BOOLEAN NULLL,
-  est_hembar BOOLEAN NULLL,
-  act_hembar BOOLEAN NULLL,
-  est_pilebrush BOOLEAN NULLL,
-  act_pilebrush BOOLEAN NULLL,
-  est_brush_location BOOLEAN NULLL,
-  act_brush_location BOOLEAN NULLL,
-  est_cord_length BOOLEAN NULLL,
-  act_cord_length BOOLEAN NULLL,
-  est_mount_type BOOLEAN NULLL,
-  act_mount_type BOOLEAN NULLL,
-  est_top_opening_width BOOLEAN NULLL,
-  act_top_opening_width BOOLEAN NULLL,
-  act_top_level BOOLEAN NULLL,
-  act_bottom_opening_width BOOLEAN NULLL,
-  act_bottom_level BOOLEAN NULLL,
-  act_left_opening_height BOOLEAN NULLL,
-  act_left_plumb BOOLEAN NULLL,
-  act_right_opening_height BOOLEAN NULLL,
-  act_right_plumb BOOLEAN NULLL,
-  est_left_buildout BOOLEAN NULLL,
-  act_left_buildout BOOLEAN NULLL,
-  est_right_buildout BOOLEAN NULLL,
-  act_right_buildout BOOLEAN NULLL,
-  est_add_buildout BOOLEAN NULLL,
-  act_add_buildout BOOLEAN NULLL,
-  est_left_track BOOLEAN NULLL,
-  act_left_track BOOLEAN NULLL,
-  est_right_track BOOLEAN NULLL,
-  act_right_track BOOLEAN NULLL,
-  act_starting_point BOOLEAN NULLL,
-  CREATE TABLE IF NOT EXISTS rainier 
+CREATE TABLE rainier_hembar
+(
+  rainier_hembar_id SERIAL,
+  est_hembar BOOLEAN NULL,
+  act_hembar BOOLEAN NULL
+);
+
+CREATE TABLE rainier_pilebrush
+(
+  rainier_pilebrush_id SERIAL,
+est_brush_location BOOLEAN NULL,
+act_brush_location BOOLEAN NULL
+);
+
+CREATE rainier_brush_loction
+(
+  rainier_brush_loction_id SERIAL,
+est_brush_location BOOLEAN NULL,
+act_brush_location BOOLEAN NULL
+);
+
+CREATE rainier_cord_length
+(
+  rainier_cord_length_id SERIAL,
+est_brush_location BOOLEAN NULL,
+act_brush_location BOOLEAN NULL
+);
+
+CREATE rainier_mount_type
+(
+  rainier_mount_type_id SERIAL,
+est_mount_type BOOLEAN NULL,
+act_mount_type BOOLEAN NULL
+);
+
+CREATE rainier_top_opening_width
+(
+  rainier_top_opening_width_id SERIAL,
+est_top_opening_width BOOLEAN NULL,
+act_top_opening_width BOOLEAN NULL  
+);
+
+CREATE rainier_top_level
+(
+  rainier_top_level_id SERIAL,
+est_top_level BOOLEAN NULL,
+act_top_level BOOLEAN NULL
+);
+
+CREATE rainier_bottom_level
+(
+  rainier_top_level_id SERIAL,
+est_bottom_level BOOLEAN NULL,
+act_bottom_level BOOLEAN NULL
+);
+
+CREATE rainier_cord_length
+(
+  rainier_cord_length_id SERIAL,
+est_brush_location BOOLEAN NULL,
+act_brush_location BOOLEAN NULL
+);
+
+CREATE rainier_actope_bottom_ning_width
+(
+  rainier_actope_bottom_ning_width_id SERIAL,
+est_rainier_actope_bottom_ning_width BOOLEAN NULL,
+act_rainier_actope_bottom_ning_width BOOLEAN NULL
+);
+
+CREATE rainier_act_right_opening_height
+(
+  rainier_act_right_opening_height_id SERIAL,
+est_rainier_act_right_opening_height BOOLEAN NULL,
+act_rainier_act_right_opening_height BOOLEAN NULL
+)
+
+CREATE rainier_right_plumb
+(
+  rainier_right_plumb_id SERIAL,
+est_right_plumb BOOLEAN NULL,
+act_right_plumb BOOLEAN NULL
+);
+
+CREATE rainier_right_opening_height
+(
+  rainier_right_opening_height_id SERIAL,
+est_rainier_right_buildout BOOLEAN NULL,
+act_right_opening_height BOOLEAN NULL
+);
+
+CREATE rainier_right_plumb
+(
+  rainier_right_plumb_id SERIAL,
+est_right_plumb BOOLEAN NULL,
+act_right_plumb BOOLEAN NULL
+);
+
+CREATE rainier_right_buildout
+(rainier_right_buildout_id SERIAL,
+est_rainier_right_buildout BOOLEAN NULL,
+act_rainier_right_buildout BOOLEAN NULL 
+);
+
+CREATE rainier_left_buildout
+(
+  rainier_left_buildout_id SERIAL,
+est_left_buildout BOOLEAN NULL,
+act_left_buildout BOOLEAN NULL
+);
+
+CREATE rainier_add_buildout
+(
+  rainier_add_buildout_id SERIAL,
+est_rrainier_add_buildout BOOLEAN NULL,
+act_rainier_add_buildout BOOLEAN NULL
+)
+
+CREATE rainier_left_track
+(
+  rainier_left_track_id SERIAL,
+est_left_track BOOLEAN NULL,
+act_left_track BOOLEAN NULL
+);
+
+CREATE rainier_right_track
+(
+  rainier_right_track_id SERIAL,
+est_right_track BOOLEAN NULL,
+act_right_track BOOLEAN NULL
+);
+
+
+  est_right_track BOOLEAN NULL,
+  act_right_track BOOLEAN NULL,
+  act_starting_point BOOLEAN NULL,
+ 
+ CREATE TABLE IF NOT EXISTS rainier 
 (
   rainier_id SERIAL,
   CONSTRAINT rainier_pk PRIMARY KEY (rainier_id)
@@ -527,8 +638,8 @@ CREATE TABLE IF NOT EXISTS wizard_smart_screen
   top_level BOOLEAN NULL,
   bottom_opening_width BOOLEAN NULL,
   bottom_level BOOLEAN NULL,
-  left_opening_height BOOLEAN NULL,
-  left_plump BOOLEAN NULL,
+  right_opening_height BOOLEAN NULL,
+  right_plump BOOLEAN NULL,
   right_opening_height BOOLEAN NULL,
   right_plump BOOLEAN NULL,
   two_by_two_angle BOOLEAN NULL,
