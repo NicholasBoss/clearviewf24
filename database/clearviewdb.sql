@@ -530,137 +530,187 @@ CREATE TABLE rainier_hembar
 CREATE TABLE rainier_pilebrush
 (
   rainier_pilebrush_id SERIAL,
-est_brush_location BOOLEAN NULL,
-act_brush_location BOOLEAN NULL
+  est_brush_location BOOLEAN NULL,
+  act_brush_location BOOLEAN NULL
 );
 
-CREATE rainier_brush_loction
+CREATE TABLE rainier_brush_loction
 (
   rainier_brush_loction_id SERIAL,
-est_brush_location BOOLEAN NULL,
-act_brush_location BOOLEAN NULL
+  est_brush_location BOOLEAN NULL,
+  act_brush_location BOOLEAN NULL
 );
 
-CREATE rainier_cord_length
+CREATE TABLE rainier_cord_length
 (
   rainier_cord_length_id SERIAL,
-est_brush_location BOOLEAN NULL,
-act_brush_location BOOLEAN NULL
+  est_brush_location BOOLEAN NULL,
+  act_brush_location BOOLEAN NULL
 );
 
-CREATE rainier_mount_type
+CREATE TABLE rainier_mount_type
 (
   rainier_mount_type_id SERIAL,
-est_mount_type BOOLEAN NULL,
-act_mount_type BOOLEAN NULL
+  est_mount_type BOOLEAN NULL,
+  act_mount_type BOOLEAN NULL
 );
 
-CREATE rainier_top_opening_width
+CREATE TABLE rainier_top_opening_width
 (
   rainier_top_opening_width_id SERIAL,
-est_top_opening_width BOOLEAN NULL,
-act_top_opening_width BOOLEAN NULL  
+  est_top_opening_width BOOLEAN NULL,
+  act_top_opening_width BOOLEAN NULL  
 );
 
-CREATE rainier_top_level
+CREATE TABLE rainier_top_level
 (
   rainier_top_level_id SERIAL,
-est_top_level BOOLEAN NULL,
-act_top_level BOOLEAN NULL
+  est_top_level BOOLEAN NULL,
+  act_top_level BOOLEAN NULL
 );
 
-CREATE rainier_bottom_level
+CREATE TABLE rainier_bottom_level
 (
-  rainier_top_level_id SERIAL,
-est_bottom_level BOOLEAN NULL,
-act_bottom_level BOOLEAN NULL
+  rainier_bottom_level_id SERIAL,
+  est_bottom_level BOOLEAN NULL,
+  act_bottom_level BOOLEAN NULL
 );
 
-CREATE rainier_cord_length
+CREATE TABLE rainier_bottom_opening_width
 (
-  rainier_cord_length_id SERIAL,
-est_brush_location BOOLEAN NULL,
-act_brush_location BOOLEAN NULL
+  rainier_bottom_opening_width_id SERIAL,
+  est_rainier_bottom_opening_width BOOLEAN NULL,
+  act_rainier_bottom_opening_width BOOLEAN NULL
 );
 
-CREATE rainier_actope_bottom_ning_width
-(
-  rainier_actope_bottom_ning_width_id SERIAL,
-est_rainier_actope_bottom_ning_width BOOLEAN NULL,
-act_rainier_actope_bottom_ning_width BOOLEAN NULL
-);
-
-CREATE rainier_act_right_opening_height
-(
-  rainier_act_right_opening_height_id SERIAL,
-est_rainier_act_right_opening_height BOOLEAN NULL,
-act_rainier_act_right_opening_height BOOLEAN NULL
-)
-
-CREATE rainier_right_plumb
-(
-  rainier_right_plumb_id SERIAL,
-est_right_plumb BOOLEAN NULL,
-act_right_plumb BOOLEAN NULL
-);
-
-CREATE rainier_right_opening_height
+CREATE TABLE rainier_right_opening_height
 (
   rainier_right_opening_height_id SERIAL,
-est_rainier_right_buildout BOOLEAN NULL,
-act_right_opening_height BOOLEAN NULL
+  est_rainier_right_opening_height BOOLEAN NULL,
+  act_rainier_right_opening_height BOOLEAN NULL
 );
 
-CREATE rainier_right_plumb
+CREATE TABLE rainier_right_plumb
 (
   rainier_right_plumb_id SERIAL,
-est_right_plumb BOOLEAN NULL,
-act_right_plumb BOOLEAN NULL
+  est_right_plumb BOOLEAN NULL,
+  act_right_plumb BOOLEAN NULL
 );
 
-CREATE rainier_right_buildout
-(rainier_right_buildout_id SERIAL,
-est_rainier_right_buildout BOOLEAN NULL,
-act_rainier_right_buildout BOOLEAN NULL 
+CREATE TABLE rainier_left_plumb
+(
+  rainier_left_plumb_id SERIAL,
+  est_left_plumb BOOLEAN NULL,
+  act_left_plumb BOOLEAN NULL
 );
 
-CREATE rainier_left_buildout
+CREATE TABLE rainier_right_buildout
+(
+  rainier_right_buildout_id SERIAL,
+  est_rainier_right_buildout BOOLEAN NULL,
+  act_rainier_right_buildout BOOLEAN NULL 
+);
+
+CREATE TABLE rainier_left_buildout
 (
   rainier_left_buildout_id SERIAL,
-est_left_buildout BOOLEAN NULL,
-act_left_buildout BOOLEAN NULL
+  est_left_buildout BOOLEAN NULL,
+  act_left_buildout BOOLEAN NULL
 );
 
-CREATE rainier_add_buildout
+CREATE TABLE rainier_add_buildout
 (
   rainier_add_buildout_id SERIAL,
-est_rrainier_add_buildout BOOLEAN NULL,
-act_rainier_add_buildout BOOLEAN NULL
+  est_rrainier_add_buildout BOOLEAN NULL,
+  act_rainier_add_buildout BOOLEAN NULL
 )
 
-CREATE rainier_left_track
+CREATE TABLE rainier_left_track
 (
   rainier_left_track_id SERIAL,
-est_left_track BOOLEAN NULL,
-act_left_track BOOLEAN NULL
+  est_left_track BOOLEAN NULL,
+  act_left_track BOOLEAN NULL
 );
 
-CREATE rainier_right_track
+CREATE TABLE rainier_right_track
 (
   rainier_right_track_id SERIAL,
-est_right_track BOOLEAN NULL,
-act_right_track BOOLEAN NULL
+  est_right_track BOOLEAN NULL,
+  act_right_track BOOLEAN NULL
 );
 
-
-  est_right_track BOOLEAN NULL,
-  act_right_track BOOLEAN NULL,
+CREATE TABLE rainier_starting_point
+(
+  rainer_starting_point_id SERIAL,
+  est_rainier_starting_point BOOLEAN NULL
   act_starting_point BOOLEAN NULL,
+);
  
  CREATE TABLE IF NOT EXISTS rainier 
 (
   rainier_id SERIAL,
-  CONSTRAINT rainier_pk PRIMARY KEY (rainier_id)
+  rainier_housing_id INTEGER NOT NULL,
+  rainier_placement_id INTEGER NOT NULL,
+  rainier_drive_side_id INTEGER NOT NULL,
+  rainier_hembar_id INTEGER NOT NULL,
+  rainier_pilebrush_id INTEGER NOT NULL,
+  rainier_brush_loction_id INTEGER NOT NULL,
+  rainier_cord_length_id INTEGER NOT NULL,
+  rainier_mount_type_id INTEGER NOT NULL,
+  rainier_top_opening_width_id INTEGER NOT NULL,
+  rainier_top_level_id INTEGER NOT NULL,
+  rainier_bottom_level_id INTEGER NOT NULL,
+  rainier_bottom_opening_width_id INTEGER NOT NULL,
+  rainier_right_opening_height_id INTEGER NOT NULL,
+  rainier_right_plumb_id INTEGER NOT NULL,
+  rainier_left_plumb_id INTEGER NOT NULL,
+  rainier_right_buildout_id INTEGER NOT NULL,
+  rainier_left_buildout_id INTEGER NOT NULL,
+  rainier_add_buildout_id INTEGER NOT NULL,
+  rainier_left_track_id INTEGER NOT NULL,
+  rainier_right_track_id INTEGER NOT NULL,
+
+  CONSTRAINT rainier_pk PRIMARY KEY (rainier_id),
+  INDEX rainier_housing_fk1_idx (rainier_housing_id),
+  INDEX rainier_placement_fk2_idx (rainier_placement_id),
+  INDEX rainier_drive_side_fk3_idx (rainier_drive_side_id),
+  INDEX rainier_hembar_fk4_idx (rainier_hembar_id),
+  INDEX rainier_pilbrush_fk5_idx (rainier_pilebrush_id),
+  INDEX rainier_brush_location_fk6_idx (rainier_brush_loction_id),
+  INDEX rainier_cord_length_fk7_idx (rainier_cord_length_id),
+  INDEX rainier_mount_type_fk8_idx (rainier_mount_type_id),
+  INDEX rainier_top_opening_width_fk9_id (rainier_top_opening_width_id),
+  INDEX rainier_top_level_fk10_idx (rainier_top_level_fk10_id),
+  INDEX rainer_bottom_level_fk11_idx (rainier_bottom_level_id),
+  INDEX rainier_bottom_opening_width_fk12_idx (rainier_bottom_opening_width_id),
+  INDEX rainier_right_opening_height_fk13_idx (rainier_right_opening_height_id),
+  INDEX rainier_right_plumb_fk14_idx (rainier_right_plumb_id),
+  INDEX rainier_left_plumb_fk15_idx (rainier_left_plumb_id),
+  INDEX rainier_right_buildout_fk16_idx (rainier_right_buildout_id),
+  INDEX rainier_left_buildout_fk17_idx (rainier_left_buildout_id),
+  INDEX rainier_add_buildout_fk18_idx (rainier_add_buildout),
+  INDEX rainier_left_track_fk19_idx (rainier_left_track_id),
+  INDEX rainier_right_track_fk20_idx (rainier_right_track_id)
+  CONSTRAINT rainier_housing_fk1
+    FOREIGN KEY (rainier_housing_id)
+    REFERENCES rainier_housing (rainier_housing_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT rainier_placement_fk2
+    FOREIGN KEY (rainier_placement_id)
+    REFERENCES rainier_placement (rainier_placement_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT rainier_drive_side_fk3
+    FOREIGN KEY (rainier_drive_side_id)
+    REFERENCES rainier_drive_side (rainier_drive_side_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+    CONSTRAINT rainier_housing_fk1
+    FOREIGN KEY (rainier_housing_id)
+    REFERENCES rainier_housing (rainier_housing_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
 );
 
 -- -----------------------------------------------------
@@ -770,28 +820,7 @@ CREATE TABLE IF NOT EXISTS measurement
     ON DELETE CASCADE
     ON UPDATE CASCADE,
     CONSTRAINT customization_fk2
--- -----------------------------------------------------
--- Table nws_measurement
--- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS nws_measurement 
-(
-  nws_measurement_id SERIAL,
-  measurement_id INTEGER NOT NULL,
-  nws_id INTEGER NOT NULL,
-  width_fraction CHARACTER(1) NULL,
-  width_plus_minus CHARACTER(1) NULL,
-  height_fraction CHARACTER(1) NULL,
-  height_plus_minus CHARACTER(1) NULL,
-  CONSTRAINT nws_measurement_pk PRIMARY KEY (nws_measurement_id),
-  INDEX nws_measurement_fk1_idx (measurement_id),
-  INDEX nws_measurement_fk2_idx (nws_id),
-  CONSTRAINT nws_measurement_fk1
-    FOREIGN KEY (measurement_id)
-    REFERENCES measurement (measurement_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    CONSTRAINT customization_fk3
+     CONSTRAINT customization_fk3
     FOREIGN KEY (frame_size_id)
     REFERENCES frame_size (frame_size_id)
     ON DELETE CASCADE
@@ -868,3 +897,31 @@ CREATE TABLE IF NOT EXISTS nws_measurement
     ON UPDATE CASCADE
   );
 
+
+-- -----------------------------------------------------
+-- Table nws_measurement
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS nws_measurement 
+(
+  nws_measurement_id SERIAL,
+  measurement_id INTEGER NOT NULL,
+  nws_id INTEGER NOT NULL,
+  width_fraction CHARACTER(1) NULL,
+  width_plus_minus CHARACTER(1) NULL,
+  height_fraction CHARACTER(1) NULL,
+  height_plus_minus CHARACTER(1) NULL,
+  CONSTRAINT nws_measurement_pk PRIMARY KEY (nws_measurement_id),
+  INDEX nws_measurement_fk1_idx (measurement_id),
+  INDEX nws_measurement_fk2_idx (nws_id),
+  CONSTRAINT nws_measurement_fk1
+    FOREIGN KEY (measurement_id)
+    REFERENCES measurement (measurement_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT nws_measurement_fk2_idx
+    FOREIGN KEY (nws_id)
+    REFERENCES new_window_screen (nws_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
