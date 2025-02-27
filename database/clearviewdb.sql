@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS address;
 DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS door;
-DROP TABLE IF EXISTS account; 
+-- DROP TABLE IF EXISTS account; 
 DROP TABLE IF EXISTS general_retract_control;
 DROP TABLE IF EXISTS hale_door; 
 DROP TABLE IF EXISTS hale_screen_model; 
@@ -654,7 +654,7 @@ CREATE TABLE rainier_starting_point
   rainier_drive_side_id INTEGER NOT NULL,
   rainier_hembar_id INTEGER NOT NULL,
   rainier_pilebrush_id INTEGER NOT NULL,
-  rainier_brush_loction_id INTEGER NOT NULL,
+  rainier_brush_location_id INTEGER NOT NULL,
   rainier_cord_length_id INTEGER NOT NULL,
   rainier_mount_type_id INTEGER NOT NULL,
   rainier_top_opening_width_id INTEGER NOT NULL,
@@ -679,7 +679,7 @@ CREATE TABLE rainier_starting_point
   INDEX rainier_brush_location_fk6_idx (rainier_brush_loction_id),
   INDEX rainier_cord_length_fk7_idx (rainier_cord_length_id),
   INDEX rainier_mount_type_fk8_idx (rainier_mount_type_id),
-  INDEX rainier_top_opening_width_fk9_id (rainier_top_opening_width_id),
+  INDEX rainier_top_opening_width_fk9_idx (rainier_top_opening_width_id),
   INDEX rainier_top_level_fk10_idx (rainier_top_level_fk10_id),
   INDEX rainer_bottom_level_fk11_idx (rainier_bottom_level_id),
   INDEX rainier_bottom_opening_width_fk12_idx (rainier_bottom_opening_width_id),
