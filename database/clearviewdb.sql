@@ -210,8 +210,8 @@ CREATE TABLE IF NOT EXISTS door
 );
 
 -- Account Type Creation
-DROP TYPE IF EXISTS account_type CASCADE;
-CREATE TYPE account_type AS ENUM
+-- DROP TYPE IF EXISTS account_type CASCADE;
+CREATE TYPE IF NOT EXISTS account_type AS ENUM
 ('Employee', 'Admin', 'DBA');
 
 -- -----------------------------------------------------
