@@ -157,22 +157,16 @@ CREATE TABLE IF NOT EXISTS cust_order
 );
 
 
-
-
-
--- Account Type Creation
-DROP TYPE IF EXISTS account_type CASCADE;
-CREATE TYPE account_type AS ENUM
-('Employee', 'Admin', 'DBA');
-
 -- -----------------------------------------------------
--- Table account
+-- Table order_log
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS customer_address 
+CREATE TABLE IF NOT EXISTS order_log
 (
-  customer_address_id SERIAL,
+  order_log_id SERIAL,
   customer_id INTEGER NOT NULL,
+  account_id INTEGER NOT NULL,
+  order_id INTEGER NOT NULL,
   actual_date DATE NULL DEFAULT NULL,
   CONSTRAINT order_log_pk PRIMARY KEY (order_log_id),
   CONSTRAINT order_log_fk1
