@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS color;
 DROP TABLE IF EXISTS frame_size;
 DROP TABLE IF EXISTS fastener;
 DROP TABLE IF EXISTS mesh; 
+DROP TABLE IF EXISTS product_mesh;
 DROP TABLE IF EXISTS new_window_screen;
 DROP TABLE IF EXISTS mesh;
 DROP TABLE IF EXISTS public.window;
@@ -360,7 +361,17 @@ CREATE TABLE IF NOT EXISTS mesh
   CONSTRAINT mesh_pk PRIMARY KEY (mesh_id)
 );
 
+-- -----------------------------------------------------
+-- Table product_mesh
+-- -----------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS product_mesh
+(
+  product_mesh_id SERIAL,
+  color_id INTEGER NOT NULL,
+  product_id INTEGER NOT NULL
+
+)
 -- -----------------------------------------------------
 -- Table window
 -- -----------------------------------------------------
