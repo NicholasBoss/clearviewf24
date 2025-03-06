@@ -236,6 +236,20 @@ CREATE TABLE IF NOT EXISTS mirage
   CONSTRAINT mirage_pk PRIMARY KEY (mirage_id)
 );
 
+CREATE TABLE IF NOT EXISTS custom_mirage_build
+(
+  custom_mirage_id SERIAL,
+  est_mirage_build BOOLEAN NOT NULL,
+  act_mirage_build BOOLEAN NOT NULL,
+  mirage_id INTEGER NOT NULL,
+  CONSTRAINT custom_mirage_pk PRIMARY KEY (custom_mirage_id),
+  CONSTRAINT custom_mirage_fk1
+    FOREIGN KEY (mirage_id)
+    REFERENCES mirage (mirage_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+
 
 -- -----------------------------------------------------
 -- Table mirage_3500
@@ -356,6 +370,20 @@ CREATE TABLE IF NOT EXISTS new_window_screen
     ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS custom_new_window_screen
+(
+  custom_nws_id SERIAL,
+  est_nws_build BOOLEAN NOT NULL,
+  act_nws_build BOOLEAN NOT NULL,
+  nws_id INTEGER NOT NULL,
+  CONSTRAINT custom_nws_pk
+    PRIMARY KEY (custom_nws_id),
+  CONSTRAINT custom_nws_fk1
+    FOREIGN KEY (nws_id)
+    REFERENCES new_window_screen (nws_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+)
 
 -- -----------------------------------------------------
 -- Table order_log
